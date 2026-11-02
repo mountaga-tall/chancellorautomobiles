@@ -112,3 +112,12 @@
  .site-header nav,.site-header nav.is-open{animation:none}
  .nav-toggle span,.choice-media{transition:none}
 }
+
+
+/* Remove decorative numbering and status indicators; preserve functional form labels. */
+.choice-index,.choice-visual-foot>b,.vehicle-type>span,.part-index,.request-step>b,.compat-header>b{display:none!important}
+.announcement .status-dot{display:none!important}
+.site-header nav>a[aria-current=page]:after{content:none!important;display:none!important}
+.choice-visual-foot{justify-content:flex-start}
+.request-step{gap:0}
+.compat-header>div{flex:1}

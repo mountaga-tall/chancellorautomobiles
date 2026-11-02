@@ -1,4 +1,4 @@
-const CACHE_NAME = 'chancellor-auto-v7';
+const CACHE_NAME = 'chancellor-auto-v8';
 const CORE_ASSETS = [
   './','./index.html','./vehicules.html','./pieces.html','./styles.css','./app.js','./manifest.webmanifest',
   './assets/chancellor-banner.png','./assets/chancellor-logo-3d.png','./assets/chancellor-logo-original.png',
