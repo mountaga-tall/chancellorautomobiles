@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#07152d">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("chancellor-theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
 <meta name="description" content="Espace pièces détachées Chancellor Automobile : recherche de filtres, freinage, suspension, moteur, électricité, carrosserie et accessoires par véhicule.">
 <meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
@@ -19,13 +20,16 @@
 <link rel="preload" as="image" href="assets/chancellor-logo-original.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preload" as="image" href="assets/chancellor-logo-original.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<script src="catalogue-demo.js" defer></script>
 <script src="app.js" defer></script>
 </head>
 <body data-page="parts">
 <div class="announcement"><span class="status-dot"></span> CHANCELLOR AUTOMOBILE <i></i> QUALITÉ <i></i> PERFORMANCE <i></i> SERVICE</div>
 <header class="site-header">
 <a class="brand" href="./index.html" aria-label="Chancellor Automobile - accueil"><img class="brand-logo-image" src="assets/chancellor-logo-3d-transparent.png" alt="Chancellor Automobile" width="1774" height="887" decoding="async"></a>
+<button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Activer le thème clair"><span class="theme-toggle-icon" aria-hidden="true">☼</span><span class="theme-toggle-label">Clair</span><span class="theme-toggle-track" aria-hidden="true"><i></i></span></button>
 <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-haspopup="true" aria-controls="main-nav"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
 <nav id="main-nav" aria-label="Navigation principale" hidden>
 <a href="./index.html" >Accueil</a>
@@ -51,6 +55,7 @@
 <article class="part-category" data-search="habitacle intérieur siège tapis poignée vitre lève vitre"><b class="part-icon">⌑</b><h3>Habitacle & intérieur</h3><p>Éléments d'intérieur, commandes, vitrages et accessoires d'habitacle.</p><button class="part-select" data-part="Habitacle & intérieur">Rechercher cette famille ↗</button></article>
 <article class="part-category" data-search="échappement sonde catalyseur silencieux ligne"><b class="part-icon">≋</b><h3>Échappement & capteurs</h3><p>Éléments de ligne d'échappement, sondes et capteurs associés.</p><button class="part-select" data-part="Échappement & capteurs">Rechercher cette famille ↗</button></article>
 </div><p class="empty-state" id="parts-empty" hidden>Aucune catégorie ne correspond à cette recherche.</p>
+<section class="demo-showcase parts-demo-showcase" id="pieces-demonstration"><div class="container"><div class="showcase-heading"><div><span class="eyebrow">APERÇU DU CATALOGUE</span><h2>Des pièces classées <em>par besoin.</em></h2><p>Trois exemples par catégorie, avec un descriptif et un tarif fictif de démonstration.</p></div><span class="demo-tag">MAQUETTE FICTIVE</span></div><div class="catalog-carousel glass-panel"><div class="catalog-carousel-head"><div><strong id="parts-family-title">Moteur & filtration · 3 exemples</strong><small>Exemples de présentation</small></div><div class="carousel-controls"><button class="carousel-arrow" type="button" data-scroll-target="parts-viewport" data-direction="-1" aria-label="Défiler les pièces précédentes">←</button><button class="carousel-arrow" type="button" data-scroll-target="parts-viewport" data-direction="1" aria-label="Défiler les pièces suivantes">→</button></div></div><div class="carousel-viewport" id="parts-viewport"><div class="catalog-track" id="parts-track" aria-live="polite"></div></div><p class="carousel-hint">Faites glisser les cartes horizontalement pour parcourir les exemples.</p></div><p class="demo-disclaimer"><strong>Catalogue fictif de démonstration.</strong> Les références, descriptions et prix sont entièrement fictifs, sans disponibilité garantie. Ils seront remplacés par les vraies références, marques, tarifs et stocks validés par Chancellor Automobile.</p></div></section>
 <div class="stock-note"><b>INFORMATION STOCK</b><span>Les catégories affichées sont des familles de recherche, pas une déclaration de stock. Chaque référence, disponibilité et prix sont confirmés avant validation.</span></div>
 </section>
 <section class="compatibility-section" id="compatibilite"><div class="container compatibility-layout"><div><span class="eyebrow">VÉRIFICATION DE COMPATIBILITÉ</span><h2>Une pièce doit<br>correspondre à <em>votre auto.</em></h2><p>Renseignez la marque, le modèle et l'année pour faciliter l'identification. Le numéro de châssis ou la référence OEM peuvent être demandés en complément.</p><ul><li>Marques et modèles référencés</li><li>Identification du véhicule</li><li>Validation de la référence avant achat</li></ul></div><div class="compatibility-card"><div class="compat-header"><span>⌕</span><div><small>IDENTIFICATION VÉHICULE</small><h3>Votre automobile</h3></div></div>

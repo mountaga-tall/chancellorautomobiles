@@ -1,3 +1,28 @@
+function initTheme(){
+  const root=document.documentElement,buttons=$$('[data-theme-toggle]'),meta=$('meta[name="theme-color"]');
+  function apply(theme,persist){
+    const value=theme==='light'?'light':'dark';root.dataset.theme=value;root.style.colorScheme=value;
+    if(persist){try{localStorage.setItem('chancellor-theme',value);}catch(error){}}
+    buttons.forEach(button=>{
+      const light=value==='light';button.setAttribute('aria-pressed',String(light));
+      button.setAttribute('aria-label',light?'Activer le thème sombre':'Activer le thème clair');
+      const label=$('.theme-toggle-label',button),icon=$('.theme-toggle-icon',button);
+      if(label)label.textContent=light?'Sombre':'Clair';if(icon)icon.textContent=light?'☾':'☼';
+    });
+    if(meta)meta.content=value==='light'?'#f3f6fb':'#07152d';
+  }
+  apply(root.dataset.theme||'dark',false);
+  buttons.forEach(button=>button.addEventListener('click',()=>apply(root.dataset.theme==='light'?'dark':'light',true)));
+}
+function bindCatalogArrows(){
+  document.querySelectorAll('[data-scroll-target][data-direction]').forEach(button=>button.addEventListener('click',()=>{
+    const viewport=document.getElementById(button.dataset.scrollTarget);if(!viewport)return;
+    const card=viewport.querySelector('.catalog-card');
+    const amount=card?card.getBoundingClientRect().width+15:viewport.clientWidth*.8;
+    viewport.scrollBy({left:Number(button.dataset.direction)*amount,behavior:'smooth'});
+  }));
+}
+
 'use strict';
 
 const VEHICLES = {
@@ -165,20 +190,11 @@ async function submitRequest(form, title, vehicle, feedback) {
   }
 }
 
-function initVehiclePage() {
+function initVehiclePage(){
   bindVehicleSelector('vehicle');
-  const form = $('#vehicle-request-form');
-  if (!form) return;
-  $$('.vehicle-type').forEach(button => button.addEventListener('click', () => {
-    const select = $('#vehicle-type');
-    if (select) select.value = button.dataset.type || '';
-    $$('.vehicle-type').forEach(item => item.classList.toggle('is-selected', item === button));
-    $('#demande-vehicule')?.scrollIntoView({behavior:'smooth', block:'start'});
-  }));
-  form.addEventListener('submit', event => {
-    event.preventDefault();
-    submitRequest(form, 'Recherche / achat d’un véhicule', selectedVehicle('vehicle'), $('#vehicle-feedback'));
-  });
+  if(window.initDemoVehicleCatalogue)window.initDemoVehicleCatalogue();
+  const form=$('#vehicle-request-form');
+  if(form)form.addEventListener('submit',event=>{event.preventDefault();submitRequest(form,'Recherche / achat d’un véhicule',selectedVehicle('vehicle'),$('#vehicle-feedback'));});
 }
 
 function mirrorVehicleSelectors(first, second) {
@@ -199,36 +215,13 @@ function mirrorVehicleSelectors(first, second) {
   });
 }
 
-function initPartsPage() {
+function initPartsPage(){
   bindVehicleSelector('part');
   bindVehicleSelector('part-form');
-  mirrorVehicleSelectors('part', 'part-form');
-  const search = $('#parts-search');
-  const cards = $$('.part-category');
-  const empty = $('#parts-empty');
-  if (search) {
-    search.addEventListener('input', () => {
-      const query = search.value.trim().toLocaleLowerCase('fr');
-      let shown = 0;
-      cards.forEach(card => {
-        const match = !query || (card.dataset.search + ' ' + card.textContent).toLocaleLowerCase('fr').includes(query);
-        card.hidden = !match;
-        if (match) shown++;
-      });
-      if (empty) empty.hidden = shown > 0;
-    });
-  }
-  $$('.part-select').forEach(button => button.addEventListener('click', () => {
-    const name = $('#part-name');
-    if (name) name.value = button.dataset.part || button.closest('.part-category')?.querySelector('h3')?.textContent || '';
-    $('#demande-piece')?.scrollIntoView({behavior:'smooth', block:'start'});
-    setTimeout(() => name?.focus({preventScroll:true}), 450);
-  }));
-  const form = $('#parts-request-form');
-  if (form) form.addEventListener('submit', event => {
-    event.preventDefault();
-    submitRequest(form, 'Recherche de pièce détachée : ' + ($('#part-name')?.value || 'Pièce à identifier'), selectedVehicle('part-form'), $('#parts-feedback'));
-  });
+  mirrorVehicleSelectors('part','part-form');
+  if(window.initDemoPartsCatalogue)window.initDemoPartsCatalogue();
+  const form=$('#parts-request-form');
+  if(form)form.addEventListener('submit',event=>{event.preventDefault();submitRequest(form,'Recherche de pièce détachée : '+($('#part-name')?.value||'Pièce à identifier'),selectedVehicle('part-form'),$('#parts-feedback'));});
 }
 
 function initNavigation() {
@@ -292,7 +285,9 @@ function initPWA() {
 
 const yearLabel = $('#current-year');
 if (yearLabel) yearLabel.textContent = String(new Date().getFullYear());
+initTheme();
 initNavigation();
+bindCatalogArrows();
 initInstallPrompt();
 initVehiclePage();
 initPartsPage();

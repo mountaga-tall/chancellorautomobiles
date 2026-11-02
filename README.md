@@ -17,3 +17,13 @@ La version transparente et les icônes `favicon-48.png`, `favicon-192.png`, `fav
 Dans `app.js`, renseigner `WHATSAPP_NUMBER` au format international sans +, espaces ou tirets. Sinon le formulaire copie le message au lieu de l'envoyer.
 
 Aucun stock, tarif ou véhicule non confirmé n'est publié.
+
+
+## Expérience premium et catalogue de démonstration
+- Thème sombre / clair mémorisé entre les pages.
+- Polices Barlow Condensed, Manrope et Space Grotesk avec fallback système.
+- Carrousels glassmorphism horizontaux utilisables au toucher.
+- 5 familles de véhicules avec 3 fiches fictives par famille.
+- 10 catégories de pièces avec 3 fiches fictives par catégorie.
+- Noms, références, caractéristiques et prix fictifs : ils ne constituent ni stock ni offre réelle.
+- Les trois visuels officiels du dépôt restent les seuls médias illustrés utilisés.
