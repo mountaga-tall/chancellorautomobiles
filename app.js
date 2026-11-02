@@ -257,24 +257,180 @@ function initNavigation() {
 }
 
 function initInstallPrompt() {
-  const button = $('#install-app');
-  if (!button) return;
+  const popup = $('#install-popover');
+  const closeButton = $('#install-popup-close');
+  const laterButton = $('#install-popup-later');
+  const actionButton = $('#install-popup-action');
+  const helpPanel = $('#install-popup-help');
+  const helpTitle = $('#install-help-title');
+  const helpSteps = $('#install-help-steps');
+  const navButton = $('#install-app');
+  if (!popup || !actionButton) return;
+
+  const DISMISSED_KEY = 'chancellor-install-dismissed-at';
+  const DISMISS_FOR = 7 * 24 * 60 * 60 * 1000;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isStandalone = () =>
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.matchMedia('(display-mode: fullscreen)').matches ||
+    navigator.standalone === true;
+
+  let helpOpen = false;
+  let promptInProgress = false;
+
+  function wasDismissedRecently() {
+    try {
+      const time = Number(localStorage.getItem(DISMISSED_KEY) || 0);
+      return time > 0 && Date.now() - time < DISMISS_FOR;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  function rememberDismissal() {
+    try { localStorage.setItem(DISMISSED_KEY, String(Date.now())); } catch (error) {}
+  }
+
+  function closePopup(remember = true) {
+    popup.hidden = true;
+    popup.classList.remove('is-visible');
+    if (remember) rememberDismissal();
+  }
+
+  function setHelp(title, steps) {
+    helpTitle.textContent = title;
+    helpSteps.replaceChildren();
+    steps.forEach(step => {
+      const item = document.createElement('li');
+      item.textContent = step;
+      helpSteps.appendChild(item);
+    });
+    helpPanel.hidden = false;
+    helpOpen = true;
+    actionButton.textContent = 'J’ai compris';
+    actionButton.dataset.mode = 'close-help';
+  }
+
+  function showManualInstructions() {
+    if (isIOS) {
+      setHelp('Sur iPhone ou iPad', [
+        'Ouvrez cette page dans Safari.',
+        'Touchez le bouton Partager en bas de l’écran.',
+        'Choisissez « Sur l’écran d’accueil » ou « Ajouter à l’écran d’accueil ».',
+        'Confirmez avec « Ajouter ».'
+      ]);
+      return;
+    }
+    const isAndroid = /android/i.test(navigator.userAgent);
+    if (isAndroid) {
+      setHelp('Sur Android', [
+        'Ouvrez le menu ⋮ de votre navigateur.',
+        'Choisissez « Installer l’application » ou « Ajouter à l’écran d’accueil ».',
+        'Confirmez l’installation.'
+      ]);
+      return;
+    }
+    setHelp('Sur ordinateur', [
+      'Dans Chrome ou Edge, utilisez l’icône Installer dans la barre d’adresse, si elle apparaît.',
+      'Vous pouvez aussi ouvrir le menu du navigateur puis choisir « Installer Chancellor Automobile ».'
+    ]);
+  }
+
+  function updateActions() {
+    if (installPrompt) {
+      actionButton.hidden = false;
+      actionButton.textContent = 'Installer l’application';
+      actionButton.dataset.mode = 'install';
+    } else {
+      actionButton.hidden = false;
+      actionButton.textContent = isIOS ? 'Comment installer ?' : 'Voir comment installer';
+      actionButton.dataset.mode = 'help';
+    }
+    if (navButton) navButton.hidden = false;
+  }
+
+  function openPopup() {
+    if (isStandalone()) return;
+    popup.hidden = false;
+    requestAnimationFrame(() => popup.classList.add('is-visible'));
+    helpPanel.hidden = true;
+    helpOpen = false;
+    updateActions();
+  }
+
+  async function runNativePrompt() {
+    if (!installPrompt || promptInProgress) {
+      showManualInstructions();
+      return;
+    }
+    promptInProgress = true;
+    const promptEvent = installPrompt;
+    installPrompt = null;
+    actionButton.disabled = true;
+    try {
+      await promptEvent.prompt();
+      const choice = await promptEvent.userChoice;
+      if (choice && choice.outcome === 'accepted') {
+        closePopup(false);
+      } else {
+        actionButton.disabled = false;
+        showManualInstructions();
+      }
+    } catch (error) {
+      actionButton.disabled = false;
+      showManualInstructions();
+    } finally {
+      promptInProgress = false;
+      updateActions();
+      actionButton.disabled = false;
+    }
+  }
+
   window.addEventListener('beforeinstallprompt', event => {
     event.preventDefault();
     installPrompt = event;
-    button.hidden = false;
+    updateActions();
+    if (!isStandalone() && !wasDismissedRecently()) openPopup();
   });
-  button.addEventListener('click', async () => {
-    if (!installPrompt) return;
-    installPrompt.prompt();
-    await installPrompt.userChoice;
-    installPrompt = null;
-    button.hidden = true;
+
+  actionButton.addEventListener('click', () => {
+    if (actionButton.dataset.mode === 'close-help') {
+      closePopup(true);
+      return;
+    }
+    if (installPrompt) {
+      runNativePrompt();
+      return;
+    }
+    showManualInstructions();
   });
+
+  if (navButton) {
+    navButton.hidden = false;
+    navButton.addEventListener('click', () => {
+      if (installPrompt) runNativePrompt();
+      else openPopup();
+    });
+  }
+
+  if (closeButton) closeButton.addEventListener('click', () => closePopup(true));
+  if (laterButton) laterButton.addEventListener('click', () => closePopup(true));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !popup.hidden) closePopup(true);
+  });
+
   window.addEventListener('appinstalled', () => {
-    button.hidden = true;
+    closePopup(false);
+    if (navButton) navButton.hidden = true;
     notify('Chancellor Automobile est installé sur votre appareil.');
   });
+
+  if (!isStandalone() && !wasDismissedRecently()) {
+    window.setTimeout(openPopup, 1400);
+  } else if (navButton) {
+    navButton.hidden = isStandalone();
+  }
 }
 
 function initPWA() {

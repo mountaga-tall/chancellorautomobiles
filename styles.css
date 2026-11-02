@@ -271,3 +271,58 @@ body[data-page="vehicles"] .vehicle-banner-crop:after{
     border-radius:9px;
   }
 }
+
+/* INSTALL APP POPUP — discreet glass panel, responsive and theme-aware */
+.install-popover[hidden]{display:none!important}
+.install-popover{
+  position:fixed;z-index:250;right:22px;bottom:22px;width:min(410px,calc(100vw - 28px));
+  padding:23px 22px 17px;border:1px solid rgba(119,190,242,.32);border-radius:19px;
+  color:#eef7ff;background:
+    radial-gradient(ellipse at 100% 0,rgba(32,146,226,.2),transparent 42%),
+    linear-gradient(145deg,rgba(9,33,67,.97),rgba(4,17,37,.97));
+  box-shadow:0 26px 80px rgba(0,0,0,.42),0 0 35px rgba(30,137,222,.13),inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);
+  opacity:0;transform:translateY(16px) scale(.985);pointer-events:none;
+  transition:opacity .28s ease,transform .28s ease;
+}
+.install-popover.is-visible{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.install-popover-close{
+  position:absolute;top:12px;right:12px;width:32px;height:32px;display:grid;place-items:center;
+  border:1px solid rgba(180,216,245,.2);border-radius:50%;background:rgba(255,255,255,.07);
+  color:#d9edff;font-size:21px;line-height:1;cursor:pointer
+}
+.install-popover-kicker{display:flex;align-items:center;gap:8px;color:#ffca6b;font-size:8px;font-weight:900;letter-spacing:1.5px}
+.install-popover-orb{width:24px;height:24px;display:grid;place-items:center;border:1px solid rgba(255,188,64,.42);border-radius:50%;background:rgba(255,179,46,.12);font-size:13px}
+.install-popover h2{margin:17px 28px 9px 0;color:#fff;font:800 30px/.98 var(--display);letter-spacing:.2px;text-transform:uppercase}
+.install-popover h2 em{color:#59bdff;font-style:normal}
+.install-popover-copy{margin:0;color:#b4c6da;font-size:10px;line-height:1.75}
+.install-popover-actions{display:flex;align-items:center;gap:9px;margin-top:18px}
+.install-popover-primary{min-height:43px;display:flex;flex:1;align-items:center;justify-content:space-between;gap:12px;padding:0 15px;border:1px solid rgba(255,190,68,.55);border-radius:8px;background:linear-gradient(105deg,#ffbd36,#f18b16);color:#142a42;font:900 10px var(--text);box-shadow:0 8px 22px rgba(239,145,24,.22);cursor:pointer}
+.install-popover-primary:hover{filter:brightness(1.07);transform:translateY(-1px)}
+.install-popover-primary:disabled{opacity:.65;cursor:wait}
+.install-popover-primary span{font-size:17px}
+.install-popover-secondary{min-height:43px;padding:0 13px;border:1px solid rgba(162,201,235,.23);border-radius:8px;background:rgba(255,255,255,.055);color:#c4d7e9;font:700 9px var(--text);cursor:pointer}
+.install-popover-help{margin-top:15px;padding:13px 14px;border:1px solid rgba(106,185,242,.2);border-radius:10px;background:rgba(0,11,27,.3)}
+.install-popover-help strong{display:block;margin-bottom:8px;color:#ffcb72;font-size:10px}
+.install-popover-help ol{margin:0;padding-left:18px;color:#c4d4e5;font-size:9px;line-height:1.8}
+.install-popover-foot{margin:13px 0 0;color:#7894b3;font-size:8px;letter-spacing:.3px}
+html[data-theme="light"] .install-popover{
+  color:#17324f;background:radial-gradient(ellipse at 100% 0,rgba(32,146,226,.12),transparent 42%),linear-gradient(145deg,rgba(255,255,255,.98),rgba(239,246,252,.98));
+  border-color:rgba(35,105,160,.2);box-shadow:0 26px 70px rgba(20,49,78,.2),inset 0 1px 0 #fff;
+}
+html[data-theme="light"] .install-popover h2{color:#173653}
+html[data-theme="light"] .install-popover-copy{color:#5d748c}
+html[data-theme="light"] .install-popover-close{color:#234766;background:#eaf2f8;border-color:#d1e0eb}
+html[data-theme="light"] .install-popover-secondary{color:#355a7a;background:#edf4f9;border-color:#d2e1ec}
+html[data-theme="light"] .install-popover-help{background:#f2f7fb;border-color:#d6e5ef}
+html[data-theme="light"] .install-popover-help ol{color:#4c657d}
+html[data-theme="light"] .install-popover-foot{color:#71879b}
+@media(max-width:720px){
+ .install-popover{right:12px;bottom:calc(12px + env(safe-area-inset-bottom));width:calc(100vw - 24px);padding:20px 17px 15px;border-radius:16px}
+ .install-popover h2{font-size:27px;margin-top:13px}
+ .install-popover-copy{font-size:10px}
+ .install-popover-actions{gap:7px}
+ .install-popover-primary{padding:0 12px;font-size:9px}
+ .install-popover-secondary{padding:0 10px}
+}
+@media(prefers-reduced-motion:reduce){.install-popover{transition:none}}

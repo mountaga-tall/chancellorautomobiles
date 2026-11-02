@@ -1,6 +1,6 @@
-const CACHE_NAME = 'chancellor-auto-v11';
+const CACHE_NAME = 'chancellor-auto-v12';
 const CORE_ASSETS = [
-  './','./index.html','./vehicules.html','./pieces.html','./styles.css','./app.js','./catalogue-demo.js','./manifest.webmanifest',
+  './','./index.html','./vehicules.html','./pieces.html','./styles.css','./app.js','./catalogue-demo.js','./manifest.webmanifest','./app.js','./styles.css',
   './assets/chancellor-banner.png','./assets/chancellor-logo-3d.png','./assets/chancellor-logo-3d-transparent.png','./assets/chancellor-logo-original.png',
   './assets/favicon.ico','./assets/favicon-48.png','./assets/favicon-192.png','./assets/favicon-512.png','./assets/apple-touch-icon.png'
 ];
