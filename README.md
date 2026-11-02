@@ -1,21 +1,30 @@
 # Chancellor Automobile
 
-Site vitrine et catalogue de demandes pour la vente automobile, les pièces détachées, l'entretien et le conseil automobile.
+Site vitrine et catalogue de demandes pour la vente de véhicules et les pièces détachées automobiles.
+
+## Pages distinctes
+
+- `index.html` : accueil et orientation vers les deux espaces commerciaux.
+- `vehicules.html` : vente automobile, catégories de véhicules, sélection marque/modèle/année et formulaire de recherche.
+- `pieces.html` : catalogue de familles de pièces, moteur de recherche, outil de compatibilité véhicule et formulaire de demande.
+- `styles.css` et `app.js` : ressources communes responsive et interactions.
+- `manifest.webmanifest`, `sw.js` et `assets/favicon-192.png` / `assets/favicon-512.png` : PWA installable et cache hors connexion.
 
 ## Fonctionnalités
 
-- Présentation responsive avec les visuels de marque fournis.
-- Référentiel de 58 marques et 380 modèles pour identifier un véhicule (marque, modèle, année).
-- Recherche textuelle par famille de pièces.
-- Formulaire de demande qui génère un message récapitulatif.
-- PWA légère avec cache versionné et mise à jour automatique du cache.
+- 58 marques et 380 modèles référencés dans les sélecteurs de véhicule.
+- Formulaires séparés pour les demandes de véhicules et de pièces.
+- Sélecteurs de compatibilité synchronisés sur la page pièces.
+- Recherche instantanée par catégorie de pièces.
+- Service worker avec cache versionné et suppression des anciennes versions.
+- Mise en page adaptée aux mobiles, tablettes et ordinateurs.
 
-## Paramétrage avant mise en production
+## Paramétrage commercial
 
-Dans `app.js`, renseigner `WHATSAPP_NUMBER` avec le numéro WhatsApp officiel au format international, sans `+`, espaces ou tirets. Tant que ce paramètre est vide, le formulaire copie le message au lieu de l'envoyer.
+Dans `app.js`, renseigner `WHATSAPP_NUMBER` avec le numéro WhatsApp officiel au format international, sans `+`, espaces ni tirets. Tant que cette valeur est vide, le formulaire prépare et copie le message au lieu de l'envoyer sur WhatsApp.
 
-Les annonces de véhicules, références de pièces, prix, coordonnées, adresse et horaires ne sont pas préremplis : ils devront être ajoutés à partir des données confirmées par l'entreprise. Le site ne prétend pas qu'un produit est en stock.
+Les annonces, stocks, références exactes, prix, coordonnées et horaires ne sont pas inventés. Ils doivent être publiés à partir des données confirmées par l'entreprise.
 
-## Déploiement GitHub Pages
+## GitHub Pages
 
-Le site est statique. Dans GitHub, activer Pages sur la branche `main`, dossier `/ (root)`. Le service worker et le manifeste sont servis automatiquement sur GitHub Pages en HTTPS.
+Activer GitHub Pages sur la branche `main`, dossier `/ (root)`. Le site est statique et fonctionne avec les chemins relatifs adaptés à un dépôt GitHub Pages.

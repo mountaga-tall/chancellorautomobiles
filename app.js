@@ -1,6 +1,5 @@
 'use strict';
 
-// Référentiel de marques et modèles transmis pour Chancellor Automobile.
 const VEHICLES = {
   'Toyota':['4Runner','Auris','Avensis','Aygo','Camry','Corolla','Fortuner','Hilux','Highlander','Land Cruiser','Land Cruiser Prado','RAV4','Sequoia','Sienna','Tacoma','Tundra','Verso','Yaris'],
   'Nissan':['Almera','Altima','Cabstar','Frontier','Juke','Micra','Navara','NP300','Pathfinder','Patrol','Primera','Qashqai','Terrano','X-Trail'],
@@ -62,192 +61,221 @@ const VEHICLES = {
   'Genesis':['G70','G80','GV70','GV80']
 };
 
-// Ajouter le numéro WhatsApp officiel au format international, sans + ni espace.
-const WHATSAPP_NUMBER = '';
+const WHATSAPP_NUMBER = ''; // Numéro officiel au format international, sans +, espace ni tiret.
+const $ = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+let toastTimer;
+let installPrompt = null;
 
-const $ = selector => document.querySelector(selector);
-const $$ = selector => Array.from(document.querySelectorAll(selector));
-const makeSelect = $('#make');
-const modelSelect = $('#model');
-const yearSelect = $('#year');
-const vehicleResult = $('#vehicle-result');
-const toast = $('#toast');
-let selectedVehicle = null;
-let toastTimer = null;
-
-function showToast(message) {
-  toast.textContent = message;
-  toast.classList.add('show');
-  window.clearTimeout(toastTimer);
-  toastTimer = window.setTimeout(() => toast.classList.remove('show'), 4200);
+function notify(message) {
+  const element = $('#site-toast');
+  if (!element) return;
+  element.textContent = message;
+  element.classList.add('is-visible');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => element.classList.remove('is-visible'), 4500);
 }
+
 function fillSelect(select, values, placeholder) {
+  if (!select) return;
   select.replaceChildren(new Option(placeholder, ''));
   values.forEach(value => select.add(new Option(value, value)));
 }
-function initVehicleFinder() {
-  const makes = Object.keys(VEHICLES);
-  const modelCount = Object.values(VEHICLES).reduce((total, models) => total + models.length, 0);
-  fillSelect(makeSelect, makes, 'Choisir une marque');
-  $('#brand-count').textContent = String(makes.length);
-  $('#model-count').textContent = String(modelCount);
-  makeSelect.addEventListener('change', () => {
-    const make = makeSelect.value;
-    fillSelect(modelSelect, make ? VEHICLES[make] : [], make ? 'Choisir un modèle' : "Choisir d'abord une marque");
-    modelSelect.disabled = !make;
-    fillSelect(yearSelect, [], "Choisir d'abord un modèle");
-    yearSelect.disabled = true;
-    vehicleResult.hidden = true;
-    selectedVehicle = null;
+
+function bindVehicleSelector(prefix) {
+  const make = $('#' + prefix + '-make');
+  const model = $('#' + prefix + '-model');
+  const year = $('#' + prefix + '-year');
+  if (!make || !model || !year) return;
+  fillSelect(make, Object.keys(VEHICLES), 'Toutes les marques');
+  make.addEventListener('change', () => {
+    const models = make.value ? VEHICLES[make.value] : [];
+    fillSelect(model, models, make.value ? 'Choisir un modèle' : 'Toutes les marques');
+    model.disabled = !make.value;
+    fillSelect(year, [], 'Choisir un modèle avant l’année');
+    year.disabled = true;
   });
-  modelSelect.addEventListener('change', () => {
-    const model = modelSelect.value;
-    const thisYear = new Date().getFullYear();
-    const years = Array.from({ length: thisYear - 1997 }, (_, index) => String(thisYear - index));
-    fillSelect(yearSelect, model ? years : [], model ? 'Choisir une année' : "Choisir d'abord un modèle");
-    yearSelect.disabled = !model;
-    vehicleResult.hidden = true;
-    selectedVehicle = null;
-  });
-  $('#vehicle-form').addEventListener('submit', event => {
-    event.preventDefault();
-    if (!makeSelect.value || !modelSelect.value || !yearSelect.value) {
-      showToast('Veuillez sélectionner la marque, le modèle et l’année.');
-      return;
-    }
-    selectedVehicle = { make: makeSelect.value, model: modelSelect.value, year: yearSelect.value };
-    $('#vehicle-summary').textContent = selectedVehicle.make + ' · ' + selectedVehicle.model + ' · ' + selectedVehicle.year;
-    vehicleResult.hidden = false;
-    vehicleResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-  $('#ask-compatible-part').addEventListener('click', () => {
-    if (!selectedVehicle) return;
-    prefillRequest('Recherche de pièces détachées', 'Véhicule : ' + selectedVehicle.make + ' ' + selectedVehicle.model + ' (' + selectedVehicle.year + ').\nPièce recherchée : ');
+  model.addEventListener('change', () => {
+    const now = new Date().getFullYear();
+    const years = Array.from({length: now - 1997}, (_, i) => String(now - i));
+    fillSelect(year, model.value ? years : [], 'Toutes les années');
+    year.disabled = !model.value;
   });
 }
-function initPartsSearch() {
-  const search = $('#parts-search');
-  const cards = $$('.part-card');
-  const empty = $('#parts-empty');
-  function filterCards() {
-    const term = search.value.trim().toLocaleLowerCase('fr');
-    let visible = 0;
-    cards.forEach(card => {
-      const haystack = (card.dataset.search + ' ' + card.textContent).toLocaleLowerCase('fr');
-      const match = !term || haystack.includes(term);
-      card.hidden = !match;
-      if (match) visible += 1;
-    });
-    empty.hidden = visible !== 0;
-  }
-  search.addEventListener('input', filterCards);
-  search.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); filterCards(); } });
+
+function selectedVehicle(prefix) {
+  const make = $('#' + prefix + '-make');
+  const model = $('#' + prefix + '-model');
+  const year = $('#' + prefix + '-year');
+  return make && model && year ? [make.value, model.value, year.value].filter(Boolean).join(' ') : '';
 }
-function prefillRequest(type, message) {
-  $('#request-type').value = type;
-  if (message) $('#request-message').value = message;
-  $('#demande').scrollIntoView({ behavior: 'smooth' });
-  window.setTimeout(() => $('#customer-name').focus({ preventScroll: true }), 550);
-}
-function initRequestShortcuts() {
-  $$('[data-request]').forEach(element => {
-    element.addEventListener('click', event => {
-      const type = element.dataset.request;
-      if (element.tagName === 'A') event.preventDefault();
-      prefillRequest(type, '');
-    });
-  });
-}
-function buildRequestMessage(formData) {
+
+function requestMessage(title, form, vehicle) {
+  const data = new FormData(form);
   const lines = [
-    'Bonjour Chancellor Automobile', '',
-    'Je souhaite faire une demande : ' + formData.get('type'),
-    'Nom : ' + formData.get('name'),
-    'Téléphone : ' + formData.get('phone'),
-    selectedVehicle ? 'Véhicule : ' + selectedVehicle.make + ' ' + selectedVehicle.model + ' (' + selectedVehicle.year + ')' : '',
-    '', 'Détails :', formData.get('message'), '',
-    'Merci de me préciser la disponibilité et les conditions.'
+    'Bonjour Chancellor Automobile,', '',
+    'DEMANDE : ' + title,
+    'Nom : ' + (data.get('name') || ''),
+    'Téléphone : ' + (data.get('phone') || ''),
+    vehicle ? 'Véhicule : ' + vehicle : '',
+    data.get('budget') ? 'Budget indicatif : ' + data.get('budget') : '',
+    data.get('type') && title.includes('véhicule') ? 'Type : ' + data.get('type') : '',
+    '', 'Détails :', data.get('details') || '',
+    '', 'Merci de me confirmer les références, la disponibilité et les conditions.'
   ];
-  return lines.filter(line => line !== '').join('\n');
+  return lines.filter((line, index) => line !== '' || (index > 0 && lines[index - 1] !== '')).join('\n');
 }
-async function copyText(text) {
+
+async function copyMessage(message) {
   if (navigator.clipboard && window.isSecureContext) {
-    await navigator.clipboard.writeText(text);
+    await navigator.clipboard.writeText(message);
     return true;
   }
-  const field = document.createElement('textarea');
-  field.value = text;
-  field.style.position = 'fixed';
-  field.style.opacity = '0';
-  document.body.appendChild(field);
-  field.select();
+  const helper = document.createElement('textarea');
+  helper.value = message;
+  helper.setAttribute('readonly', '');
+  helper.style.position = 'fixed';
+  helper.style.opacity = '0';
+  document.body.appendChild(helper);
+  helper.select();
   const copied = document.execCommand('copy');
-  field.remove();
+  helper.remove();
   return copied;
 }
-function initInquiryForm() {
-  $('#inquiry-form').addEventListener('submit', async event => {
+
+async function submitRequest(form, title, vehicle, feedback) {
+  if (!form.reportValidity()) return;
+  const message = requestMessage(title, form, vehicle);
+  if (WHATSAPP_NUMBER) {
+    const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
+    const opened = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!opened) notify('Autorisez les fenêtres externes pour ouvrir WhatsApp.');
+    if (feedback) feedback.textContent = 'Votre demande a été préparée dans WhatsApp. Vérifiez le message puis envoyez-le.';
+    return;
+  }
+  try {
+    const copied = await copyMessage(message);
+    if (feedback) feedback.textContent = copied
+      ? 'Votre message est copié. Collez-le dans votre application de messagerie pour l’envoyer.'
+      : 'Le canal de réception devra être configuré par Chancellor Automobile.';
+    notify(copied ? 'Demande copiée : prête à être envoyée.' : 'Canal de contact à configurer.');
+  } catch (error) {
+    if (feedback) feedback.textContent = 'Le numéro WhatsApp officiel n’est pas encore configuré sur ce site.';
+    notify('Impossible de copier le message automatiquement.');
+  }
+}
+
+function initVehiclePage() {
+  bindVehicleSelector('vehicle');
+  const form = $('#vehicle-request-form');
+  if (!form) return;
+  $$('.vehicle-type').forEach(button => button.addEventListener('click', () => {
+    const select = $('#vehicle-type');
+    if (select) select.value = button.dataset.type || '';
+    $$('.vehicle-type').forEach(item => item.classList.toggle('is-selected', item === button));
+    $('#demande-vehicule')?.scrollIntoView({behavior:'smooth', block:'start'});
+  }));
+  form.addEventListener('submit', event => {
     event.preventDefault();
-    const form = event.currentTarget;
-    if (!form.reportValidity()) return;
-    const message = buildRequestMessage(new FormData(form));
-    const feedback = $('#form-feedback');
-    if (WHATSAPP_NUMBER) {
-      const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message);
-      window.open(url, '_blank', 'noopener,noreferrer');
-      feedback.textContent = 'Votre message est prêt dans WhatsApp. Vérifiez-le puis envoyez-le pour transmettre votre demande.';
-      showToast('Votre demande a été préparée dans WhatsApp.');
-      return;
-    }
-    try {
-      const copied = await copyText(message);
-      if (copied) {
-        feedback.textContent = 'Votre message a été copié. Le numéro WhatsApp officiel devra être ajouté pour activer l’envoi direct depuis ce formulaire.';
-        showToast('Demande copiée. Vous pouvez la coller dans votre canal de contact.');
-      } else {
-        feedback.textContent = 'Le canal de réception n’est pas encore configuré. Contactez l’administrateur du site pour ajouter le WhatsApp officiel.';
-        showToast('Le canal de contact doit encore être configuré.');
-      }
-    } catch (error) {
-      feedback.textContent = 'Le canal de réception n’est pas encore configuré. Contactez l’administrateur du site pour ajouter le WhatsApp officiel.';
-      showToast('Impossible de copier automatiquement. Vérifiez les paramètres du navigateur.');
-    }
+    submitRequest(form, 'Recherche / achat d’un véhicule', selectedVehicle('vehicle'), $('#vehicle-feedback'));
   });
 }
-function initMobileMenu() {
-  const toggle = $('.menu-toggle');
-  const nav = $('#primary-nav');
-  toggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', String(open));
-    toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+
+function mirrorVehicleSelectors(first, second) {
+  let syncing = false;
+  ['make', 'model', 'year'].forEach(suffix => {
+    const left = $('#' + first + '-' + suffix);
+    const right = $('#' + second + '-' + suffix);
+    if (!left || !right) return;
+    const mirror = (source, target) => {
+      if (syncing) return;
+      syncing = true;
+      target.value = source.value;
+      target.dispatchEvent(new Event('change', {bubbles:true}));
+      syncing = false;
+    };
+    left.addEventListener('change', () => mirror(left, right));
+    right.addEventListener('change', () => mirror(right, left));
   });
-  $$('#primary-nav a').forEach(link => link.addEventListener('click', () => {
-    nav.classList.remove('open');
+}
+
+function initPartsPage() {
+  bindVehicleSelector('part');
+  bindVehicleSelector('part-form');
+  mirrorVehicleSelectors('part', 'part-form');
+  const search = $('#parts-search');
+  const cards = $$('.part-category');
+  const empty = $('#parts-empty');
+  if (search) {
+    search.addEventListener('input', () => {
+      const query = search.value.trim().toLocaleLowerCase('fr');
+      let shown = 0;
+      cards.forEach(card => {
+        const match = !query || (card.dataset.search + ' ' + card.textContent).toLocaleLowerCase('fr').includes(query);
+        card.hidden = !match;
+        if (match) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
+    });
+  }
+  $$('.part-select').forEach(button => button.addEventListener('click', () => {
+    const name = $('#part-name');
+    if (name) name.value = button.dataset.part || button.closest('.part-category')?.querySelector('h3')?.textContent || '';
+    $('#demande-piece')?.scrollIntoView({behavior:'smooth', block:'start'});
+    setTimeout(() => name?.focus({preventScroll:true}), 450);
+  }));
+  const form = $('#parts-request-form');
+  if (form) form.addEventListener('submit', event => {
+    event.preventDefault();
+    submitRequest(form, 'Recherche de pièce détachée : ' + ($('#part-name')?.value || 'Pièce à identifier'), selectedVehicle('part-form'), $('#parts-feedback'));
+  });
+}
+
+function initNavigation() {
+  const toggle = $('.nav-toggle');
+  const nav = $('#main-nav');
+  if (!toggle || !nav) return;
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  $$('a', nav).forEach(link => link.addEventListener('click', () => {
+    nav.classList.remove('is-open');
     toggle.setAttribute('aria-expanded', 'false');
-    toggle.setAttribute('aria-label', 'Ouvrir le menu');
   }));
 }
-function initMotion() {
-  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const targets = $$('.part-card, .service-card, .trust-item');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  targets.forEach(target => observer.observe(target));
+
+function initInstallPrompt() {
+  const button = $('#install-app');
+  if (!button) return;
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    installPrompt = event;
+    button.hidden = false;
+  });
+  button.addEventListener('click', async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    await installPrompt.userChoice;
+    installPrompt = null;
+    button.hidden = true;
+  });
+  window.addEventListener('appinstalled', () => {
+    button.hidden = true;
+    notify('Chancellor Automobile est installé sur votre appareil.');
+  });
 }
-$('#current-year').textContent = String(new Date().getFullYear());
-initVehicleFinder();
-initPartsSearch();
-initRequestShortcuts();
-initInquiryForm();
-initMobileMenu();
-initMotion();
-if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+
+function initPWA() {
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+  }
 }
+
+const yearLabel = $('#current-year');
+if (yearLabel) yearLabel.textContent = String(new Date().getFullYear());
+initNavigation();
+initInstallPrompt();
+initVehiclePage();
+initPartsPage();
+initPWA();

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07152d">
+<meta name="description" content="Découvrez l'espace vente de véhicules Chancellor Automobile. Recherche personnalisée de berlines, SUV, citadines, 4x4 et utilitaires.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vente de véhicules | Chancellor Automobile">
+<meta property="og:description" content="Découvrez l'espace vente de véhicules Chancellor Automobile. Recherche personnalisée de berlines, SUV, citadines, 4x4 et utilitaires.">
+<meta property="og:image" content="assets/banner.avif">
+<title>Vente de véhicules | Chancellor Automobile</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
+<link rel="icon" href="assets/favicon-512.png" sizes="512x512" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+<script src="app.js" defer></script>
+</head>
+<body data-page="vehicles">
+<div class="announcement"><span class="status-dot"></span> CHANCELLOR AUTOMOBILE <i></i> QUALITÉ <i></i> PERFORMANCE <i></i> SERVICE</div>
+<header class="site-header">
+<a class="brand" href="./index.html" aria-label="Chancellor Automobile - accueil"><span class="brand-mark">C<small>A</small></span><span class="brand-name"><b>CHANCELLOR</b><small>AUTOMOBILE</small></span></a>
+<button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+<nav id="main-nav" aria-label="Navigation principale">
+<a href="./index.html" >Accueil</a>
+<a href="./vehicules.html" aria-current="page">Vente de véhicules</a>
+<a href="./pieces.html" >Pièces détachées</a>
+<a href="#contact">Contact</a>
+<button class="install-button" id="install-app" type="button" hidden><span>↓</span> Installer l'application</button>
+</nav>
+</header>
+<main id="top">
+<section class="sub-hero vehicle-hero"><div class="container sub-hero-inner"><div><a class="back-home" href="./index.html">← Accueil</a><span class="eyebrow">ESPACE 01 · VENTE AUTOMOBILE</span><h1>Trouvez votre<br><em>prochain véhicule.</em></h1><p>Une recherche automobile construite autour de vos critères : catégorie, marque, modèle, année et budget.</p><div class="hero-actions"><a class="action-button orange" href="#demande-vehicule">Décrire ma recherche ↘</a><a class="action-button outline" href="./pieces.html">Besoin d'une pièce ?</a></div></div><div class="vehicle-hero-art"><span class="art-orbit"></span><img src="assets/logo.avif" alt="Chancellor Automobile" loading="lazy"></div></div></section>
+<section class="container vehicle-categories"><div class="section-heading"><span class="eyebrow">QUEL TYPE DE VÉHICULE ?</span><h2>Votre usage définit <em>le choix.</em></h2><p>Indiquez le type de véhicule recherché. Nous pourrons affiner votre demande à partir de vos critères.</p></div>
+<div class="vehicle-type-grid">
+<button class="vehicle-type" type="button" data-type="Berline"><span>01</span><b>▰</b><strong>Berline</strong><small>Confort & élégance</small></button>
+<button class="vehicle-type" type="button" data-type="SUV / Crossover"><span>02</span><b>◈</b><strong>SUV / Crossover</strong><small>Polyvalence & espace</small></button>
+<button class="vehicle-type" type="button" data-type="Citadine"><span>03</span><b>▱</b><strong>Citadine</strong><small>Agilité au quotidien</small></button>
+<button class="vehicle-type" type="button" data-type="4×4 / Tout-terrain"><span>04</span><b>◇</b><strong>4×4 / Tout-terrain</strong><small>Robustesse & mobilité</small></button>
+<button class="vehicle-type" type="button" data-type="Utilitaire"><span>05</span><b>▤</b><strong>Utilitaire</strong><small>Transport & activité</small></button>
+</div></section>
+<section class="inventory-note"><div class="container inventory-inner"><span class="note-icon">i</span><div><strong>Recherche personnalisée</strong><p>Les véhicules disponibles seront ajoutés au catalogue au fur et à mesure des arrivages. Aucune annonce, disponibilité ou tarification n'est affichée sans confirmation par Chancellor Automobile.</p></div><a href="#demande-vehicule">Faire une recherche ↗</a></div></section>
+<section class="request-section" id="demande-vehicule"><div class="container request-layout"><div class="request-intro"><span class="eyebrow">FORMULAIRE DE RECHERCHE</span><h2>Définissons<br>votre <em>prochain achat.</em></h2><p>Donnez-nous quelques indications pour orienter la recherche et préparer une proposition adaptée.</p><div class="request-step"><b>01</b><span><strong>Vos critères</strong><small>Catégorie, marque, modèle, année et budget.</small></span></div><div class="request-step"><b>02</b><span><strong>Vos coordonnées</strong><small>Pour pouvoir revenir vers vous.</small></span></div><div class="request-step"><b>03</b><span><strong>Confirmation</strong><small>Disponibilité et conditions à confirmer avec le conseiller.</small></span></div></div>
+<div class="request-card"><div class="request-card-head"><small>CHANCELLOR AUTOMOBILE · VÉHICULES</small><h3>Votre recherche auto</h3><p>Les champs marqués * sont obligatoires.</p></div><form id="vehicle-request-form">
+<div class="field-grid"><label class="field"><span>Type de véhicule</span><select id="vehicle-type" name="type"><option value="">Tous les types</option><option>Berline</option><option>SUV / Crossover</option><option>Citadine</option><option>4×4 / Tout-terrain</option><option>Utilitaire</option></select></label><label class="field"><span>Budget indicatif</span><input name="budget" type="text" placeholder="Ex. 5 à 8 millions FCFA"></label></div>
+<div class="field-grid"><label class="field"><span>Marque souhaitée</span><select id="vehicle-make" name="make"><option value="">Toutes les marques</option></select></label><label class="field"><span>Modèle</span><select id="vehicle-model" name="model" disabled><option value="">Choisir une marque d'abord</option></select></label></div>
+<label class="field"><span>Année souhaitée</span><select id="vehicle-year" name="year" disabled><option value="">Choisir un modèle d'abord</option></select></label>
+<div class="field-grid"><label class="field"><span>Votre nom *</span><input name="name" autocomplete="name" placeholder="Nom et prénom" required></label><label class="field"><span>Téléphone *</span><input name="phone" type="tel" autocomplete="tel" placeholder="Numéro joignable" required></label></div>
+<label class="field"><span>Précisions sur votre recherche *</span><textarea name="details" rows="4" placeholder="État souhaité, carburant, boîte, options, délai d'achat…" required></textarea></label>
+<label class="consent"><input type="checkbox" required><span>J'accepte que mes informations soient utilisées pour traiter ma demande.</span></label>
+<button class="action-button orange full-width" type="submit">Envoyer ma demande de véhicule ↗</button><p class="form-feedback" id="vehicle-feedback" aria-live="polite">La demande ne constitue pas une réservation ni une commande ferme.</p>
+</form></div></div></section>
+</main>
+<footer class="site-footer" id="contact">
+<div class="container footer-inner">
+<div><a class="brand" href="./index.html"><span class="brand-mark">C<small>A</small></span><span class="brand-name"><b>CHANCELLOR</b><small>AUTOMOBILE</small></span></a><p>Roulez en toute confiance.<br>Qualité · Performance · Service.</p></div>
+<div class="footer-col"><b>VENTE AUTOMOBILE</b><a href="./vehicules.html">Rechercher un véhicule</a><a href="./vehicules.html#demande-vehicule">Demander une recherche</a></div>
+<div class="footer-col"><b>PIÈCES DÉTACHÉES</b><a href="./pieces.html">Catalogue par catégories</a><a href="./pieces.html#compatibilite">Vérifier la compatibilité</a></div>
+<div class="footer-tag"><small>CHANCELLOR AUTOMOBILE</small><strong>DRIVE WITH<br>CONFIDENCE.</strong><i></i></div>
+</div>
+<div class="container footer-bottom"><span>© <span id="current-year"></span> Chancellor Automobile. Tous droits réservés.</span><a href="#top">Retour en haut ↑</a><span>Site responsive · PWA</span></div>
+</footer>
+<div class="site-toast" id="site-toast" role="status" aria-live="polite"></div>
+</body>
+</html>
