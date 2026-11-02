@@ -180,3 +180,94 @@ html[data-theme="light"] .catalog-card{background:linear-gradient(145deg,rgba(25
 @media(max-width:720px){.theme-toggle{min-height:36px;margin-right:8px;padding:5px 7px;gap:6px}.theme-toggle-label{display:none}.theme-toggle-track{width:26px}.showcase-heading{display:block;margin-bottom:20px}.showcase-heading .demo-tag{margin-top:14px}.catalog-carousel{padding:15px 12px 10px;border-radius:14px}.catalog-carousel-head strong{font-size:23px}.catalog-track{grid-auto-columns:88%;gap:11px}.catalog-card{min-height:285px;padding:16px}.catalog-card h3{font-size:28px}.carousel-arrow{width:34px;height:34px}.home-glass-rail{display:grid;grid-auto-flow:column;grid-auto-columns:86%;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 13px}.home-rail-card{scroll-snap-align:start;min-height:168px}.demo-showcase{padding:57px 0 60px}.home-discovery{padding:55px 0 58px}}
 @media(max-width:390px){.theme-toggle{margin-right:5px}.theme-toggle-icon{font-size:13px}.catalog-price-row strong{font-size:19px}}
 @media(prefers-reduced-motion:reduce){.catalog-card,.home-rail-card,.theme-toggle,.carousel-arrow{transition:none!important}.carousel-viewport,.home-glass-rail{scroll-behavior:auto}}
+
+
+/* VEHICLES HERO — show the entire original banner at every viewport size.
+   Source artwork is 2048 × 768 (8:3); never crop it with object-fit:cover. */
+body[data-page="vehicles"] .sub-hero-inner{
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+}
+body[data-page="vehicles"] .vehicle-hero-art.vehicle-banner-crop{
+  width:100%;
+  min-width:0;
+  min-height:0;
+  height:auto;
+  max-height:none;
+  aspect-ratio:8 / 3;
+  align-self:center;
+  overflow:hidden;
+}
+body[data-page="vehicles"] .vehicle-hero-art.vehicle-banner-crop img{
+  display:block;
+  width:100%;
+  height:100%;
+  min-height:0;
+  max-height:none;
+  aspect-ratio:8 / 3;
+  object-fit:contain;
+  object-position:center center;
+  mix-blend-mode:normal;
+  filter:none;
+}
+body[data-page="vehicles"] .vehicle-banner-crop:before{
+  width:82%;
+  height:72%;
+}
+body[data-page="vehicles"] .vehicle-banner-crop:after{
+  bottom:8%;
+  height:18%;
+}
+
+@media (min-width:721px) and (max-width:900px){
+  body[data-page="vehicles"] .sub-hero-inner{
+    grid-template-columns:minmax(0,1fr);
+    min-height:0;
+    gap:12px;
+    padding-bottom:24px;
+  }
+  body[data-page="vehicles"] .sub-hero-inner>div:first-child{
+    padding:30px 0 8px;
+  }
+  body[data-page="vehicles"] .vehicle-hero-art.vehicle-banner-crop{
+    width:100%;
+    max-width:850px;
+    justify-self:center;
+    margin:0 auto;
+  }
+}
+
+@media (max-width:720px){
+  body[data-page="vehicles"] .sub-hero-inner{
+    grid-template-columns:minmax(0,1fr);
+    gap:8px;
+  }
+  body[data-page="vehicles"] .sub-hero-inner>div:first-child{
+    padding:27px 0 8px;
+  }
+  body[data-page="vehicles"] .vehicle-hero-art.vehicle-banner-crop{
+    width:100%;
+    max-width:100%;
+    min-height:0;
+    max-height:none;
+    height:auto;
+    aspect-ratio:8 / 3;
+    margin:8px 0 18px;
+    border-radius:12px;
+  }
+  body[data-page="vehicles"] .vehicle-hero-art.vehicle-banner-crop img{
+    width:100%;
+    height:100%;
+    min-height:0;
+    max-height:none;
+    object-fit:contain;
+    object-position:center;
+  }
+}
+
+@media (max-width:390px){
+  body[data-page="vehicles"] .vehicle-hero-art.vehicle-banner-crop{
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:9px;
+  }
+}
