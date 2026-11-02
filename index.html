@@ -26,8 +26,8 @@
 <div class="announcement"><span class="status-dot"></span> CHANCELLOR AUTOMOBILE <i></i> QUALITÉ <i></i> PERFORMANCE <i></i> SERVICE</div>
 <header class="site-header">
 <a class="brand" href="./index.html" aria-label="Chancellor Automobile - accueil"><img class="brand-logo-image" src="assets/chancellor-logo-3d.png" alt="Chancellor Automobile" width="1774" height="887" decoding="async"></a>
-<button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
-<nav id="main-nav" aria-label="Navigation principale">
+<button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-haspopup="true" aria-controls="main-nav"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+<nav id="main-nav" aria-label="Navigation principale" hidden>
 <a href="./index.html" aria-current="page">Accueil</a>
 <a href="./vehicules.html" >Vente de véhicules</a>
 <a href="./pieces.html" >Pièces détachées</a>
@@ -43,8 +43,22 @@
 <section class="choice-section">
 <div class="container"><div class="section-heading"><span class="eyebrow">CHOISISSEZ VOTRE ESPACE</span><h2>Votre recherche commence <em>ici.</em></h2></div>
 <div class="choice-grid">
-<a class="choice-card vehicle-choice" href="./vehicules.html"><div class="choice-visual"><span class="choice-index">01 / AUTOMOBILES</span><div class="car-illustration"><span class="car-glow"></span><svg viewBox="0 0 620 220" role="img" aria-label="Silhouette de berline"><defs><linearGradient id="carPaint" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#a8eaff"/><stop offset=".35" stop-color="#178de8"/><stop offset="1" stop-color="#063c85"/></linearGradient></defs><ellipse cx="310" cy="190" rx="230" ry="16" fill="#000" opacity=".4"/><path d="M70 151l26-46 90-26 80-39h147l81 42 61 22 13 47-16 22H72z" fill="url(#carPaint)" stroke="#8fdcff" stroke-width="4"/><path d="M202 83l72-36h137l66 42z" fill="#0a2449" stroke="#a9ebff" stroke-width="3"/><path d="M344 47v43m67-42 40 41" stroke="#55c8ff" stroke-width="3"/><path d="M72 151h506" stroke="#ffb62f" stroke-width="4"/><g fill="#06152b" stroke="#a6dcff" stroke-width="6"><circle cx="179" cy="166" r="42"/><circle cx="470" cy="166" r="42"/></g><g fill="#33557e" stroke="#b4dfff" stroke-width="3"><circle cx="179" cy="166" r="23"/><circle cx="470" cy="166" r="23"/></g></svg></div><div class="choice-visual-foot"><span>RECHERCHE · CONSEIL · ACHAT</span><b>01</b></div></div><div class="choice-content"><span class="eyebrow">ESPACE VÉHICULES</span><h3>La voiture<br>qui vous correspond.</h3><p>Berlines, SUV, citadines, 4×4 et utilitaires. Faites-nous connaître vos critères pour une recherche ciblée.</p><span class="choice-link">Accéder à la vente de véhicules <b>↗</b></span></div></a>
-<a class="choice-card parts-choice" href="./pieces.html"><div class="choice-visual"><span class="choice-index">02 / PIÈCES AUTO</span><div class="parts-emblem"><div class="gear-ring">⚙</div><span>PARTS<br><strong>&</strong><br>PERFORMANCE</span><div class="parts-line"></div></div><div class="choice-visual-foot"><span>IDENTIFICATION · COMPATIBILITÉ · RECHERCHE</span><b>02</b></div></div><div class="choice-content"><span class="eyebrow">ESPACE PIÈCES DÉTACHÉES</span><h3>La bonne pièce.<br>Pour le bon modèle.</h3><p>Explorez les familles de pièces et identifiez votre véhicule pour préparer une demande précise.</p><span class="choice-link">Accéder aux pièces détachées <b>↗</b></span></div></a>
+<a class="choice-card vehicle-choice" href="./vehicules.html">
+  <div class="choice-visual vehicle-choice-visual">
+    <span class="choice-index">01 / AUTOMOBILES</span>
+    <img class="choice-media" src="assets/chancellor-banner.png" alt="Bannière officielle Chancellor Automobile" width="2048" height="768" loading="lazy" decoding="async">
+    <div class="choice-visual-foot"><span>RECHERCHE · CONSEIL · ACHAT</span><b>01</b></div>
+  </div>
+  <div class="choice-content"><span class="eyebrow">ESPACE VÉHICULES</span><h3>La voiture<br>qui vous correspond.</h3><p>Berlines, SUV, citadines, 4×4 et utilitaires. Faites-nous connaître vos critères pour une recherche ciblée.</p><span class="choice-link">Accéder à la vente de véhicules <b>↗</b></span></div>
+</a>
+<a class="choice-card parts-choice" href="./pieces.html">
+  <div class="choice-visual parts-choice-visual">
+    <span class="choice-index">02 / PIÈCES AUTO</span>
+    <div class="parts-type-display"><span>CHANCELLOR</span><strong>PIÈCES</strong><b>DÉTACHÉES</b><small>IDENTIFICATION · COMPATIBILITÉ · RECHERCHE</small></div>
+    <div class="choice-visual-foot"><span>RÉFÉRENCES · COMPATIBILITÉ</span><b>02</b></div>
+  </div>
+  <div class="choice-content"><span class="eyebrow">ESPACE PIÈCES DÉTACHÉES</span><h3>La bonne pièce.<br>Pour le bon modèle.</h3><p>Explorez les familles de pièces et identifiez votre véhicule pour préparer une demande précise.</p><span class="choice-link">Accéder aux pièces détachées <b>↗</b></span></div>
+</a>
 </div></div></section>
 <section class="home-values"><div class="container values-grid"><div><span>✦</span><strong>Un conseil personnalisé</strong><small>Une demande étudiée selon votre besoin.</small></div><div><span>⌕</span><strong>Une recherche ciblée</strong><small>Des critères clairs avant toute proposition.</small></div><div><span>✓</span><strong>Des informations confirmées</strong><small>Disponibilités et conditions validées avec vous.</small></div></div></section>
 

@@ -234,15 +234,33 @@ function initPartsPage() {
 function initNavigation() {
   const toggle = $('.nav-toggle');
   const nav = $('#main-nav');
-  if (!toggle || !nav) return;
-  toggle.addEventListener('click', () => {
-    const open = nav.classList.toggle('is-open');
+  const header = $('.site-header');
+  if (!toggle || !nav || !header) return;
+
+  function setOpen(open, returnFocus = false) {
+    nav.hidden = !open;
+    nav.classList.toggle('is-open', open);
+    toggle.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    if (returnFocus) toggle.focus();
+  }
+
+  setOpen(false);
+  toggle.addEventListener('click', () => setOpen(nav.hidden));
+
+  // Close after navigating to another page or an in-page section.
+  $$('a', nav).forEach(link => link.addEventListener('click', () => setOpen(false)));
+
+  // Close on outside interaction and Escape; return focus to the hamburger on Escape.
+  document.addEventListener('pointerdown', event => {
+    if (!nav.hidden && !header.contains(event.target)) setOpen(false);
   });
-  $$('a', nav).forEach(link => link.addEventListener('click', () => {
-    nav.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !nav.hidden) {
+      setOpen(false, true);
+    }
+  });
 }
 
 function initInstallPrompt() {
