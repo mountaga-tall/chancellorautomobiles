@@ -11,10 +11,12 @@
 <meta property="og:description" content="Découvrez l'espace vente de véhicules Chancellor Automobile. Recherche personnalisée de berlines, SUV, citadines, 4x4 et utilitaires.">
 <meta property="og:image" content="assets/vehicle-hero.svg">
 <title>Vente de véhicules | Chancellor Automobile</title>
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png">
-<link rel="icon" href="assets/favicon-512.png" sizes="512x512" type="image/png">
-<link rel="apple-touch-icon" href="assets/favicon-192.png">
+<link rel="icon" href="assets/favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="assets/favicon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/chancellor-banner.png">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="preload" as="image" href="assets/vehicle-hero.svg">
 <link rel="stylesheet" href="styles.css">
@@ -23,7 +25,7 @@
 <body data-page="vehicles">
 <div class="announcement"><span class="status-dot"></span> CHANCELLOR AUTOMOBILE <i></i> QUALITÉ <i></i> PERFORMANCE <i></i> SERVICE</div>
 <header class="site-header">
-<a class="brand" href="./index.html" aria-label="Chancellor Automobile - accueil"><span class="brand-mark">C<small>A</small></span><span class="brand-name"><b>CHANCELLOR</b><small>AUTOMOBILE</small></span></a>
+<a class="brand" href="./index.html" aria-label="Chancellor Automobile - accueil"><img class="brand-logo-image" src="assets/chancellor-logo-3d.png" alt="Chancellor Automobile" width="1774" height="887" decoding="async"></a>
 <button class="nav-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
 <nav id="main-nav" aria-label="Navigation principale">
 <a href="./index.html" >Accueil</a>
@@ -34,7 +36,7 @@
 </nav>
 </header>
 <main id="top">
-<section class="sub-hero vehicle-hero"><div class="container sub-hero-inner"><div><a class="back-home" href="./index.html">← Accueil</a><span class="eyebrow">ESPACE 01 · VENTE AUTOMOBILE</span><h1>Trouvez votre<br><em>prochain véhicule.</em></h1><p>Une recherche automobile construite autour de vos critères : catégorie, marque, modèle, année et budget.</p><div class="hero-actions"><a class="action-button orange" href="#demande-vehicule">Décrire ma recherche ↘</a><a class="action-button outline" href="./pieces.html">Besoin d'une pièce ?</a></div></div><div class="vehicle-hero-art"><span class="art-orbit"></span><img src="assets/vehicle-hero.svg" alt="Illustration vectorielle d’un véhicule sportif bleu" width="1100" height="680" loading="eager" fetchpriority="high" decoding="async"></div></div></section>
+<section class="sub-hero vehicle-hero"><div class="container sub-hero-inner"><div><a class="back-home" href="./index.html">← Accueil</a><span class="eyebrow">ESPACE 01 · VENTE AUTOMOBILE</span><h1>Trouvez votre<br><em>prochain véhicule.</em></h1><p>Une recherche automobile construite autour de vos critères : catégorie, marque, modèle, année et budget.</p><div class="hero-actions"><a class="action-button orange" href="#demande-vehicule">Décrire ma recherche ↘</a><a class="action-button outline" href="./pieces.html">Besoin d'une pièce ?</a></div></div><div class="vehicle-hero-art vehicle-banner-crop"><img src="assets/chancellor-banner.png" alt="Bannière officielle Chancellor Automobile avec berline sportive bleue" width="2048" height="768" loading="eager" fetchpriority="high" decoding="async"></div></div></section>
 <section class="container vehicle-categories"><div class="section-heading"><span class="eyebrow">QUEL TYPE DE VÉHICULE ?</span><h2>Votre usage définit <em>le choix.</em></h2><p>Indiquez le type de véhicule recherché. Nous pourrons affiner votre demande à partir de vos critères.</p></div>
 <div class="vehicle-type-grid">
 <button class="vehicle-type" type="button" data-type="Berline"><span>01</span><b>▰</b><strong>Berline</strong><small>Confort & élégance</small></button>
@@ -57,7 +59,7 @@
 </main>
 <footer class="site-footer" id="contact">
 <div class="container footer-inner">
-<div><a class="brand" href="./index.html"><span class="brand-mark">C<small>A</small></span><span class="brand-name"><b>CHANCELLOR</b><small>AUTOMOBILE</small></span></a><p>Roulez en toute confiance.<br>Qualité · Performance · Service.</p></div>
+<div><a class="brand footer-brand" href="./index.html" aria-label="Chancellor Automobile - accueil"><img class="brand-logo-image" src="assets/chancellor-logo-3d.png" alt="Chancellor Automobile" width="1774" height="887" loading="lazy" decoding="async"></a><p>Roulez en toute confiance.<br>Qualité · Performance · Service.</p></div>
 <div class="footer-col"><b>VENTE AUTOMOBILE</b><a href="./vehicules.html">Rechercher un véhicule</a><a href="./vehicules.html#demande-vehicule">Demander une recherche</a></div>
 <div class="footer-col"><b>PIÈCES DÉTACHÉES</b><a href="./pieces.html">Catalogue par catégories</a><a href="./pieces.html#compatibilite">Vérifier la compatibilité</a></div>
 <div class="footer-tag"><small>CHANCELLOR AUTOMOBILE</small><strong>DRIVE WITH<br>CONFIDENCE.</strong><i></i></div>

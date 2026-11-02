@@ -26,3 +26,23 @@
 .official-brand-copy h2 em{font-style:normal;color:#128bd8}
 .official-brand-copy p{font-size:10px;line-height:1.9;color:#718097;max-width:390px;margin:0 0 18px}
 @media(max-width:720px){.official-brand{grid-template-columns:1fr;gap:7px;margin-top:8px;padding:12px}.official-brand-art img{max-width:500px}.official-brand-copy{padding:15px 12px 18px}.official-brand-copy h2{font-size:40px}}
+
+/* Official Chancellor identity assets: originals only. */
+.brand{min-width:0;flex:0 0 auto;display:flex;align-items:center}
+.brand-logo-image{display:block;width:174px;height:66px;max-width:100%;object-fit:contain;object-position:left center;filter:drop-shadow(0 5px 13px rgba(0,0,0,.22))}
+.footer-brand .brand-logo-image{width:205px;height:77px}
+.site-header nav{margin-left:auto}
+.vehicle-banner-crop{min-width:0;min-height:280px;max-height:340px;overflow:hidden;position:relative;border:1px solid rgba(91,183,255,.42);border-radius:16px;background:#07152d;box-shadow:0 23px 48px rgba(0,0,0,.34),0 0 28px rgba(21,139,232,.12)}
+.vehicle-banner-crop img{display:block;width:100%;height:100%;min-height:280px;max-height:340px;object-fit:cover;object-position:78% center}
+.vehicle-banner-crop:after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;box-shadow:inset 0 0 40px rgba(0,0,0,.18),inset 0 0 0 1px rgba(255,255,255,.1)}
+.parts-logo-frame{width:100%;max-width:620px;min-width:0;min-height:0;padding:10px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px solid rgba(255,255,255,.86);border-radius:17px;box-shadow:0 25px 65px rgba(0,0,0,.35),0 0 36px rgba(45,159,244,.14)}
+.parts-logo-frame .parts-hero-image{display:block;width:100%;height:auto;max-height:345px;object-fit:contain;filter:none;animation:none}
+@media(max-width:720px){
+ .brand-logo-image{width:145px;height:58px}
+ .footer-brand .brand-logo-image{width:175px;height:65px}
+ .vehicle-banner-crop{min-height:185px;max-height:225px;border-radius:11px}
+ .vehicle-banner-crop img{min-height:185px;max-height:225px;object-position:78% center}
+ .parts-logo-frame{width:100%;padding:6px;border-radius:10px}
+ .parts-logo-frame .parts-hero-image{max-height:230px}
+}
+@media(max-width:390px){.brand-logo-image{width:127px;height:53px}.footer-brand .brand-logo-image{width:155px;height:59px}}

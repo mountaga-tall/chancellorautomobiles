@@ -1,23 +1,23 @@
 {
-  "id": "./",
-  "name": "Chancellor Automobile",
-  "short_name": "Chancellor Auto",
-  "description": "Vente de véhicules, pièces détachées et services automobiles. Design premium responsive.",
-  "lang": "fr",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
-  "orientation": "any",
-  "background_color": "#07152d",
-  "theme_color": "#07152d",
-  "categories": ["shopping", "automotive", "business"],
-  "icons": [
-    {"src": "assets/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "assets/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  "id":"./",
+  "name":"Chancellor Automobile",
+  "short_name":"Chancellor Auto",
+  "description":"Vente de véhicules, pièces détachées et services automobiles.",
+  "lang":"fr",
+  "start_url":"./index.html",
+  "scope":"./",
+  "display":"standalone",
+  "display_override":["standalone","minimal-ui"],
+  "orientation":"any",
+  "background_color":"#07152d",
+  "theme_color":"#07152d",
+  "categories":["shopping","automotive","business"],
+  "icons":[
+    {"src":"assets/favicon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"assets/favicon-512.png","sizes":"512x512","type":"image/png","purpose":"any"}
   ],
-  "shortcuts": [
-    {"name": "Vente de véhicules", "short_name": "Véhicules", "url": "./vehicules.html", "icons": [{"src": "assets/favicon-192.png", "sizes": "192x192", "type": "image/png"}]},
-    {"name": "Pièces détachées", "short_name": "Pièces", "url": "./pieces.html", "icons": [{"src": "assets/favicon-192.png", "sizes": "192x192", "type": "image/png"}]}
+  "shortcuts":[
+    {"name":"Vente de véhicules","short_name":"Véhicules","url":"./vehicules.html","icons":[{"src":"assets/favicon-192.png","sizes":"192x192","type":"image/png"}]},
+    {"name":"Pièces détachées","short_name":"Pièces","url":"./pieces.html","icons":[{"src":"assets/favicon-192.png","sizes":"192x192","type":"image/png"}]}
   ]
 }
