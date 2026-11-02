@@ -15,12 +15,12 @@
 <meta property="og:image" content="../assets/chancellor-banner.png">
 <title>Vehicle Sales | Chancellor Automobile</title>
 <link rel="icon" href="../assets/favicon.ico" sizes="any">
-<link rel="icon" href="assets/favicon-48.png" type="image/png" sizes="48x48">
-<link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192">
-<link rel="icon" href="assets/favicon-512.png" type="image/png" sizes="512x512">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="../assets/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="../assets/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="../assets/favicon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="manifest" href="./manifest.webmanifest">
-<link rel="preload" as="image" href="assets/chancellor-banner.png">
+<link rel="preload" as="image" href="../assets/chancellor-banner.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../styles.css">
 <script src="./catalogue-demo.js" defer></script>
@@ -43,7 +43,7 @@
 </nav>
 </header>
 <main id="top">
-<section class="sub-hero vehicle-hero"><div class="container sub-hero-inner"><div><a class="back-home" href="./index.html">← Home</a><span class="eyebrow">VEHICLE SALES</span><h1>Find your<br><em>next vehicle.</em></h1><p>A vehicle search built around your requirements: category, make, model, year and budget.</p><div class="hero-actions"><a class="action-button orange" href="#demande-vehicule">Describe your requirements ↘</a><a class="action-button outline" href="./parts.html">Need an auto part?</a></div></div><div class="vehicle-hero-art vehicle-banner-crop"><img src="assets/chancellor-banner.png" alt="Bannière officielle Chancellor Automobile avec berline sportive bleue" width="2048" height="768" loading="eager" fetchpriority="high" decoding="async"></div></div></section>
+<section class="sub-hero vehicle-hero"><div class="container sub-hero-inner"><div><a class="back-home" href="./index.html">← Home</a><span class="eyebrow">VEHICLE SALES</span><h1>Find your<br><em>next vehicle.</em></h1><p>A vehicle search built around your requirements: category, make, model, year and budget.</p><div class="hero-actions"><a class="action-button orange" href="#demande-vehicule">Describe your requirements ↘</a><a class="action-button outline" href="./parts.html">Need an auto part?</a></div></div><div class="vehicle-hero-art vehicle-banner-crop"><img src="../assets/chancellor-banner.png" alt="Official Chancellor Automobile banner featuring a blue sports sedan" width="2048" height="768" loading="eager" fetchpriority="high" decoding="async"></div></div></section>
 <section class="container vehicle-categories"><div class="section-heading"><span class="eyebrow">WHICH TYPE OF VEHICLE?</span><h2>Your needs define <em>the choice.</em></h2><p>Select the type of vehicle you are looking for. We can refine your enquiry around your requirements.</p></div>
 <div class="vehicle-type-grid">
 <button class="vehicle-type" type="button" data-type="Berline"><b>▰</b><strong>Sedan</strong><small>Comfort & style</small></button>
@@ -56,8 +56,8 @@
 <section class="inventory-note"><div class="container inventory-inner"><span class="note-icon">i</span><div><strong>Personalised vehicle search</strong><p>Vehicles will be added as confirmed stock becomes available. No listing, availability or price is published before confirmation by Chancellor Automobile.</p></div><a href="#demande-vehicule">Submit a search ↗</a></div></section>
 <section class="request-section" id="demande-vehicule"><div class="container request-layout"><div class="request-intro"><span class="eyebrow">VEHICLE ENQUIRY FORM</span><h2>Let’s define<br>your <em>next vehicle.</em></h2><p>Share a few details so we can guide the search and prepare a suitable proposal.</p><div class="request-step"><span><strong>Your requirements</strong><small>Category, make, model, year and budget.</small></span></div><div class="request-step"><span><strong>Your contact details</strong><small>So our team can get back to you.</small></span></div><div class="request-step"><span><strong>Confirmation</strong><small>Availability and terms will be confirmed by our team.</small></span></div></div>
 <div class="request-card"><div class="request-card-head"><small>CHANCELLOR AUTOMOBILE · VEHICLES</small><h3>Your vehicle enquiry</h3><p>Fields marked * are required.</p></div><form id="vehicle-request-form">
-<div class="field-grid"><label class="field"><span>Vehicle type</span><select id="vehicle-type" name="type"><option value="">Tous les types</option><option value="Berline">Sedan</option><option value="SUV / Crossover">SUV / Crossover</option><option value="Citadine">City car</option><option value="4×4 / Tout-terrain">4×4 / Off-road</option><option value="Utilitaire">Commercial vehicle</option></select></label><label class="field"><span>Indicative budget</span><input name="budget" type="text" placeholder="e.g. XOF 5–8 million"></label></div>
-<div class="field-grid"><label class="field"><span>Preferred make</span><select id="vehicle-make" name="make"><option value="">Toutes les marques</option></select></label><label class="field"><span>Model</span><select id="vehicle-model" name="model" disabled><option value="">Choisir une marque d'abord</option></select></label></div>
+<div class="field-grid"><label class="field"><span>Vehicle type</span><select id="vehicle-type" name="type"><option value="">All types</option><option value="Berline">Sedan</option><option value="SUV / Crossover">SUV / Crossover</option><option value="Citadine">City car</option><option value="4×4 / Tout-terrain">4×4 / Off-road</option><option value="Utilitaire">Commercial vehicle</option></select></label><label class="field"><span>Indicative budget</span><input name="budget" type="text" placeholder="e.g. XOF 5–8 million"></label></div>
+<div class="field-grid"><label class="field"><span>Preferred make</span><select id="vehicle-make" name="make"><option value="">All makes</option></select></label><label class="field"><span>Model</span><select id="vehicle-model" name="model" disabled><option value="">Choose a make first</option></select></label></div>
 <label class="field"><span>Preferred year</span><select id="vehicle-year" name="year" disabled><option value="">Choisir un modèle d'abord</option></select></label>
 <div class="field-grid"><label class="field"><span>Your name *</span><input name="name" autocomplete="name" placeholder="Full name" required></label><label class="field"><span>Phone number *</span><input name="phone" type="tel" autocomplete="tel" placeholder="Contact number" required></label></div>
 <label class="field"><span>Tell us more about your requirements *</span><textarea name="details" rows="4" placeholder="Preferred condition, fuel, transmission, features, purchase timeframe…" required></textarea></label>
@@ -67,7 +67,7 @@
 </main>
 <footer class="site-footer" id="contact">
 <div class="container footer-inner">
-<div><a class="brand footer-brand" href="./index.html" aria-label="Chancellor Automobile - home"><img class="brand-logo-image" src="assets/chancellor-logo-3d-transparent.png" alt="Chancellor Automobile" width="1774" height="887" loading="lazy" decoding="async"></a><p>Drive with confidence.<br>Quality · Performance · Service.</p><div class="footer-contact-mini"><a href="tel:+2250757608293">+225 07 57 60 82 93</a><a href="https://wa.me/2250757608293" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="mailto:chancellor.keitaaircargo@gmail.com">chancellor.keitaaircargo@gmail.com</a><a href="https://www.facebook.com/ChancellorAutomobile" target="_blank" rel="noopener noreferrer">Facebook · Chancellor Automobile ↗</a></div></div>
+<div><a class="brand footer-brand" href="./index.html" aria-label="Chancellor Automobile - home"><img class="brand-logo-image" src="../assets/chancellor-logo-3d-transparent.png" alt="Chancellor Automobile" width="1774" height="887" loading="lazy" decoding="async"></a><p>Drive with confidence.<br>Quality · Performance · Service.</p><div class="footer-contact-mini"><a href="tel:+2250757608293">+225 07 57 60 82 93</a><a href="https://wa.me/2250757608293" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="mailto:chancellor.keitaaircargo@gmail.com">chancellor.keitaaircargo@gmail.com</a><a href="https://www.facebook.com/ChancellorAutomobile" target="_blank" rel="noopener noreferrer">Facebook · Chancellor Automobile ↗</a></div></div>
 <div class="footer-col"><b>VEHICLE SALES</b><a href="./vehicles.html">Browse vehicles</a><a href="./vehicles.html#demande-vehicule">Request a vehicle search</a></div>
 <div class="footer-col"><b>AUTO PARTS</b><a href="./parts.html">Browse parts categories</a><a href="./parts.html#compatibilite">Check compatibility</a></div>
 <div class="footer-tag"><small>CHANCELLOR AUTOMOBILE</small><strong>DRIVE WITH<br>CONFIDENCE.</strong><i></i></div>
