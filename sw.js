@@ -1,7 +1,7 @@
-const CACHE_NAME = 'chancellor-auto-v8';
+const CACHE_NAME = 'chancellor-auto-v9';
 const CORE_ASSETS = [
   './','./index.html','./vehicules.html','./pieces.html','./styles.css','./app.js','./manifest.webmanifest',
-  './assets/chancellor-banner.png','./assets/chancellor-logo-3d.png','./assets/chancellor-logo-original.png',
+  './assets/chancellor-banner.png','./assets/chancellor-logo-3d.png','./assets/chancellor-logo-3d-transparent.png','./assets/chancellor-logo-original.png',
   './assets/favicon.ico','./assets/favicon-48.png','./assets/favicon-192.png','./assets/favicon-512.png','./assets/apple-touch-icon.png'
 ];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(CORE_ASSETS)));self.skipWaiting();});

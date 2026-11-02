@@ -121,3 +121,20 @@
 .choice-visual-foot{justify-content:flex-start}
 .request-step{gap:0}
 .compat-header>div{flex:1}
+
+/* Transparent official 3D logo: no white tile behind the wordmark. */
+.brand-logo-image{
+  width:174px;height:66px;object-fit:contain;
+  background:transparent!important;
+  mix-blend-mode:normal;
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.2));
+}
+.footer-brand .brand-logo-image{width:205px;height:77px}
+@media(max-width:720px){
+ .brand-logo-image{width:145px;height:58px}
+ .footer-brand .brand-logo-image{width:175px;height:65px}
+}
+@media(max-width:390px){
+ .brand-logo-image{width:127px;height:53px}
+ .footer-brand .brand-logo-image{width:155px;height:59px}
+}
