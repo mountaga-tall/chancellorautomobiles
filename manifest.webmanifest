@@ -1,0 +1,12 @@
+{
+  "name": "Chancellor Automobile",
+  "short_name": "Chancellor Auto",
+  "description": "Vente automobile, pièces détachées, entretien et réparation.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07152d",
+  "theme_color": "#07152d",
+  "icons": [{ "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
