@@ -86,7 +86,7 @@ const VEHICLES = {
   'Genesis':['G70','G80','GV70','GV80']
 };
 
-const WHATSAPP_NUMBER = ''; // Numéro officiel au format international, sans +, espace ni tiret.
+const WHATSAPP_NUMBER = '2250757608293'; // Numéro officiel au format international, sans +, espace ni tiret.
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 let toastTimer;

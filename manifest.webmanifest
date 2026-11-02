@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Chancellor Automobile",
   "short_name": "Chancellor Auto",
-  "description": "Chancellor Automobile : catalogue de présentation fictif, vente de véhicules et recherche de pièces détachées. Thèmes clair et sombre et carrousels adaptatifs.",
+  "description": "Chancellor Automobile : vente de véhicules, pièces détachées et solutions automobiles internationales.",
   "lang": "fr",
   "start_url": "./index.html",
   "scope": "./",

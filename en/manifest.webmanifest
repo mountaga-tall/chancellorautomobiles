@@ -1,0 +1,62 @@
+{
+  "id": "./",
+  "name": "Chancellor Automobile | International",
+  "short_name": "Chancellor Auto",
+  "description": "Vehicle sales, auto parts, international transport, customs documentation, vehicle shipping and import-export services.",
+  "lang": "en",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
+  "orientation": "any",
+  "background_color": "#07152d",
+  "theme_color": "#07152d",
+  "categories": [
+    "shopping",
+    "automotive",
+    "business"
+  ],
+  "icons": [
+    {
+      "src": "../assets/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "../assets/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Vehicle sales",
+      "short_name": "Vehicles",
+      "url": "./vehicles.html",
+      "icons": [
+        {
+          "src": "../assets/favicon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Auto parts",
+      "short_name": "Parts",
+      "url": "./parts.html",
+      "icons": [
+        {
+          "src": "../assets/favicon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

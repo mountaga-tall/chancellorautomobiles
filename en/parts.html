@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07152d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>try{document.documentElement.dataset.theme=localStorage.getItem("chancellor-theme")||"dark"}catch(e){document.documentElement.dataset.theme="dark"}</script>
+<meta name="description" content="Espace pièces détachées Chancellor Automobile : recherche de filtres, freinage, suspension, moteur, électricité, carrosserie et accessoires par véhicule.">
+<meta name="robots" content="index,follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chancellor Automobile | Vehicle Sales, Auto Parts & International Logistics">
+<meta property="og:description" content="Vehicle sales, auto parts, international transport, vehicle shipping and import-export solutions.">
+<meta property="og:image" content="../assets/chancellor-logo-original.png">
+<title>Auto Parts | Chancellor Automobile</title>
+<link rel="icon" href="../assets/favicon.ico" sizes="any">
+<link rel="icon" href="assets/favicon-48.png" type="image/png" sizes="48x48">
+<link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="assets/favicon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preload" as="image" href="assets/chancellor-logo-original.png">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="preload" as="image" href="assets/chancellor-logo-original.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<script src="./catalogue-demo.js" defer></script>
+<script src="./app.js" defer></script>
+</head>
+<body data-page="parts">
+<div class="site-loader" id="site-loader" role="status" aria-live="polite"><div class="loader-brand"><img src="../assets/chancellor-logo-3d-transparent.png" alt="" width="150" height="75"></div><span class="loader-spinner" aria-hidden="true"></span><strong>CHANCELLOR AUTOMOBILE</strong><small>LOADING YOUR EXPERIENCE</small></div><script>(function(){var n=document.getElementById('site-loader'),t=Date.now(),done=false;function hide(){if(done||!n)return;done=true;setTimeout(function(){n.classList.add('is-hidden');setTimeout(function(){n.remove();},440);},Math.max(0,480-(Date.now()-t)));}window.addEventListener('load',hide,{once:true});setTimeout(hide,2800);})();</script>
+<div class="announcement"><span class="status-dot"></span> CHANCELLOR AUTOMOBILE <i></i> QUALITÉ <i></i> PERFORMANCE <i></i> SERVICE</div>
+<header class="site-header">
+<a class="brand" href="./index.html" aria-label="Chancellor Automobile - home"><img class="brand-logo-image" src="../assets/chancellor-logo-3d-transparent.png" alt="Chancellor Automobile" width="1774" height="887" decoding="async"></a>
+<a class="language-toggle" href="../parts.html" lang="fr" hreflang="fr" aria-label="Voir cette page en français">FR</a>
+<button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false" aria-label="Switch to light theme"><span class="theme-toggle-icon" aria-hidden="true">☼</span><span class="theme-toggle-label">Light</span><span class="theme-toggle-track" aria-hidden="true"><i></i></span></button>
+<button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-haspopup="true" aria-controls="main-nav"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></button>
+<nav id="main-nav" aria-label="Navigation principale" hidden>
+<a href="./index.html" >Home</a>
+<a href="./vehicles.html" >Vehicle sales</a>
+<a href="./parts.html" aria-current="page">Auto parts</a>
+<a href="#contact">Contact</a>
+<button class="install-button" id="install-app" type="button" hidden><span>↓</span> Install the app</button>
+</nav>
+</header>
+<main id="top">
+<section class="sub-hero parts-hero"><div class="container sub-hero-inner"><div><a class="back-home" href="./index.html">← Home</a><span class="eyebrow">AUTO PARTS</span><h1>The right part.<br><em>With confidence.</em></h1><p>Browse parts categories, identify your vehicle and share the details needed to verify the correct reference.</p><div class="hero-actions"><a class="action-button orange" href="#catalogue-pieces">Browse parts ↘</a><a class="action-button outline" href="./vehicles.html">Looking for a vehicle?</a></div></div><div class="parts-hero-art parts-logo-frame"><img class="parts-hero-image" src="assets/chancellor-logo-original.png" alt="Logo Chancellor Automobile avec pièces détachées, disque, pneus et outils" width="1774" height="887" loading="eager" fetchpriority="high" decoding="async"></div></div></section>
+<section class="container parts-catalogue" id="catalogue-pieces"><div class="section-heading"><span class="eyebrow">BROWSE BY CATEGORY</span><h2>Find the part <em>you need.</em></h2><p>Choose a category or use search to prepare your enquiry.</p></div>
+<div class="parts-search"><span>⌕</span><input id="parts-search" type="search" placeholder="Rechercher : filtre, plaquette, amortisseur, batterie…" autocomplete="off"><small>SEARCH</small></div>
+<div class="parts-category-grid">
+<article class="part-category" data-search="moteur filtration filtres à huile air carburant courroie distribution refroidissement"><b class="part-icon">⚙</b><h3>Engine & filters</h3><p>Filters, belts, lubrication, cooling and engine components.</p><button class="part-select" data-part="Moteur & filtration">Browse this category ↗</button></article>
+<article class="part-category" data-search="freinage plaquettes disques étriers frein liquide flexibles"><b class="part-icon">◉</b><h3>Braking</h3><p>Brake pads, discs, calipers and braking system components.</p><button class="part-select" data-part="Freinage">Browse this category ↗</button></article>
+<article class="part-category" data-search="suspension direction amortisseurs rotules biellettes triangles"><b class="part-icon">⌁</b><h3>Suspension & steering</h3><p>Shock absorbers, ball joints, control arms, links and steering components.</p><button class="part-select" data-part="Suspension & direction">Browse this category ↗</button></article>
+<article class="part-category" data-search="électricité batterie alternateur démarreur éclairage capteurs"><b class="part-icon">ϟ</b><h3>Electrical & battery</h3><p>Batteries, alternators, starters, lighting and electrical equipment.</p><button class="part-select" data-part="Électricité & batterie">Browse this category ↗</button></article>
+<article class="part-category" data-search="embrayage transmission boite vitesse cardan volant moteur"><b class="part-icon">⛭</b><h3>Clutch & transmission</h3><p>Clutches, driveline, drive shafts and gearbox components.</p><button class="part-select" data-part="Embrayage & transmission">Browse this category ↗</button></article>
+<article class="part-category" data-search="carrosserie phare rétroviseur pare choc optique éclairage"><b class="part-icon">▱</b><h3>Bodywork & lighting</h3><p>Mirrors, lights, body panels and exterior accessories.</p><button class="part-select" data-part="Carrosserie & éclairage">Browse this category ↗</button></article>
+<article class="part-category" data-search="accessoires multimédia autoradio caméra capteurs équipement"><b class="part-icon">▣</b><h3>Accessories & multimedia</h3><p>Car stereos, cameras, sensors and automotive equipment.</p><button class="part-select" data-part="Accessoires & multimédia">Browse this category ↗</button></article>
+<article class="part-category" data-search="roues pneus jantes valves pneumatiques"><b class="part-icon">◎</b><h3>Tyres & wheels</h3><p>Tyres, rims and related items according to the required dimensions.</p><button class="part-select" data-part="Pneus & roues">Browse this category ↗</button></article>
+<article class="part-category" data-search="habitacle intérieur siège tapis poignée vitre lève vitre"><b class="part-icon">⌑</b><h3>Cabin & interior</h3><p>Interior trim, controls, windows and cabin accessories.</p><button class="part-select" data-part="Habitacle & intérieur">Browse this category ↗</button></article>
+<article class="part-category" data-search="échappement sonde catalyseur silencieux ligne"><b class="part-icon">≋</b><h3>Exhaust & sensors</h3><p>Exhaust system components, probes and related sensors.</p><button class="part-select" data-part="Échappement & capteurs">Browse this category ↗</button></article>
+</div><p class="empty-state" id="parts-empty" hidden>No category matches your search.</p>
+<section class="demo-showcase parts-demo-showcase" id="pieces-demonstration"><div class="container"><div class="showcase-heading"><div><span class="eyebrow">CATALOGUE PREVIEW</span><h2>Parts organised <em>around your needs.</em></h2><p>Three illustrative items per category, with descriptions and fictional demo pricing.</p></div><span class="demo-tag">MAQUETTE FICTIVE</span></div><div class="catalog-carousel glass-panel"><div class="catalog-carousel-head"><div><strong id="parts-family-title">Engine & filters · 3 examples</strong><small>Exemples de présentation</small></div><div class="carousel-controls"><button class="carousel-arrow" type="button" data-scroll-target="parts-viewport" data-direction="-1" aria-label="Défiler les pièces précédentes">←</button><button class="carousel-arrow" type="button" data-scroll-target="parts-viewport" data-direction="1" aria-label="Défiler les pièces suivantes">→</button></div></div><div class="carousel-viewport" id="parts-viewport"><div class="catalog-track" id="parts-track" aria-live="polite"></div></div><p class="carousel-hint">Faites glisser les cartes horizontalement pour parcourir les exemples.</p></div><p class="demo-disclaimer"><strong>Fictional demonstration catalogue.</strong> All references, descriptions and prices are fictional and do not indicate availability. They will be replaced with verified part numbers, brands, prices and stock details from Chancellor Automobile.</p></div></section>
+<div class="stock-note"><b>STOCK INFORMATION</b><span>The categories shown are search groups, not a stock statement. Every part number, availability and price is confirmed before an order is accepted.</span></div>
+</section>
+<section class="compatibility-section" id="compatibilite"><div class="container compatibility-layout"><div><span class="eyebrow">COMPATIBILITY CHECK</span><h2>A part must<br>fit <em>your vehicle.</em></h2><p>Enter the make, model and year to help identify your vehicle. The chassis number or OEM reference may also be requested.</p><ul><li>Makes and models indexed</li><li>Vehicle identification</li><li>Part number verified before purchase</li></ul></div><div class="compatibility-card"><div class="compat-header"><span>⌕</span><div><small>VEHICLE IDENTIFICATION</small><h3>Your vehicle</h3></div></div>
+<div class="field"><label for="part-make">Make *</label><select id="part-make"><option value="">Select a make</option></select></div><div class="field"><label for="part-model">Model *</label><select id="part-model" disabled><option value="">Select a make d'abord</option></select></div><div class="field"><label for="part-year">Year *</label><select id="part-year" disabled><option value="">Select a model first</option></select></div><p class="compat-hint">Exact compatibility is confirmed against your vehicle’s technical references.</p>
+</div></div></section>
+<section class="request-section" id="demande-piece"><div class="container request-layout"><div class="request-intro"><span class="eyebrow">PARTS ENQUIRY</span><h2>Let’s identify the<br><em>correct part.</em></h2><p>The more details you provide, the more accurately we can identify the right part.</p><div class="request-step"><span><strong>The part you need</strong><small>Name, photo or OEM reference, if available.</small></span></div><div class="request-step"><span><strong>Your vehicle</strong><small>Make, model and year are required.</small></span></div><div class="request-step"><span><strong>Your contact details</strong><small>So we can confirm the part number, price and availability.</small></span></div></div>
+<div class="request-card"><div class="request-card-head"><small>CHANCELLOR AUTOMOBILE · AUTO PARTS</small><h3>Your parts enquiry</h3><p>Les champs marqués * sont obligatoires.</p></div><form id="parts-request-form">
+<label class="field"><span>Part or reference required *</span><input id="part-name" name="part" placeholder="e.g. front brake pads, oil filter…" required></label>
+<div class="field-grid"><label class="field"><span>Make *</span><select id="part-make-form" name="make" required><option value="">Select a make</option></select></label><label class="field"><span>Model *</span><select id="part-model-form" name="model" required disabled><option value="">Select a make d'abord</option></select></label></div>
+<label class="field"><span>Year *</span><select id="part-year-form" name="year" required disabled><option value="">Select a model first</option></select></label>
+<div class="field-grid"><label class="field"><span>Votre nom *</span><input name="name" autocomplete="name" placeholder="Nom et prénom" required></label><label class="field"><span>Téléphone *</span><input name="phone" type="tel" autocomplete="tel" placeholder="Numéro joignable" required></label></div>
+<label class="field"><span>Additional information</span><textarea name="details" rows="4" placeholder="OEM reference, engine, chassis number (optional), quantity…"></textarea></label>
+<label class="consent"><input type="checkbox" required><span>J'accepte que mes informations soient utilisées pour traiter ma demande.</span></label><button class="action-button orange full-width" type="submit">Send parts enquiry ↗</button><p class="form-feedback" id="parts-feedback" aria-live="polite">Availability and pricing are confirmed only after verification.</p>
+</form></div></div></section>
+</main>
+<footer class="site-footer" id="contact">
+<div class="container footer-inner">
+<div><a class="brand footer-brand" href="./index.html" aria-label="Chancellor Automobile - home"><img class="brand-logo-image" src="assets/chancellor-logo-3d-transparent.png" alt="Chancellor Automobile" width="1774" height="887" loading="lazy" decoding="async"></a><p>Drive with confidence.<br>Quality · Performance · Service.</p><div class="footer-contact-mini"><a href="tel:+2250757608293">+225 07 57 60 82 93</a><a href="https://wa.me/2250757608293" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="mailto:chancellor.keitaaircargo@gmail.com">chancellor.keitaaircargo@gmail.com</a><a href="https://www.facebook.com/ChancellorAutomobile" target="_blank" rel="noopener noreferrer">Facebook · Chancellor Automobile ↗</a></div></div>
+<div class="footer-col"><b>VEHICLE SALES</b><a href="./vehicles.html">Browse vehicles</a><a href="./vehicles.html#demande-vehicule">Request a vehicle search</a></div>
+<div class="footer-col"><b>AUTO PARTS</b><a href="./parts.html">Browse parts categories</a><a href="./parts.html#compatibilite">Check compatibility</a></div>
+<div class="footer-tag"><small>CHANCELLOR AUTOMOBILE</small><strong>DRIVE WITH<br>CONFIDENCE.</strong><i></i></div>
+</div>
+<div class="container footer-bottom"><span>© <span id="current-year"></span> Chancellor Automobile. All rights reserved.</span><a href="#top">Back to top ↑</a><span>Responsive website · PWA</span></div>
+</footer>
+<aside class="install-popover" id="install-popover" role="dialog" aria-label="Installer Chancellor Automobile" aria-modal="false" hidden>
+  <button class="install-popover-close" id="install-popup-close" type="button" aria-label="Close installation window">×</button>
+  <div class="install-popover-kicker"><span class="install-popover-orb">✦</span> CHANCELLOR APP</div>
+  <h2>Your automotive world,<br><em>at your fingertips.</em></h2>
+  <p class="install-popover-copy">Install Chancellor Automobile on your device to access vehicles, auto parts and enquiries right from your home screen.</p>
+  <div class="install-popover-actions">
+    <button class="install-popover-primary" id="install-popup-action" type="button">Install the app <span aria-hidden="true">↗</span></button>
+    <button class="install-popover-secondary" id="install-popup-later" type="button">Not now</button>
+  </div>
+  <div class="install-popover-help" id="install-popup-help" hidden>
+    <strong id="install-help-title">Installation on your device</strong>
+    <ol id="install-help-steps"></ol>
+  </div>
+  <p class="install-popover-foot">Free · Direct access from your home screen</p>
+</aside>
+<div class="site-toast" id="site-toast" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -27,3 +27,13 @@ Aucun stock, tarif ou véhicule non confirmé n'est publié.
 - 10 catégories de pièces avec 3 fiches fictives par catégorie.
 - Noms, références, caractéristiques et prix fictifs : ils ne constituent ni stock ni offre réelle.
 - Les trois visuels officiels du dépôt restent les seuls médias illustrés utilisés.
+
+
+## English website and international services
+- English pages: `/en/`, `/en/vehicles.html` and `/en/parts.html`.
+- Language switch between French and English on all pages.
+- Dedicated English PWA manifest and standalone entry point.
+- Services: international freight, customs documentation, vehicle shipping, tracking, supplier payment coordination and import-export.
+- Locations: Abu Dhabi, Dubai and Sharjah, United Arab Emirates.
+- Main phone and WhatsApp: +225 07 57 60 82 93.
+- Contact email: chancellor.keitaaircargo@gmail.com.
