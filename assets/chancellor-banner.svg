@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 768" role="img" aria-labelledby="title desc">
+<title id="title">Chancellor Automobile</title><desc id="desc">Identité visuelle automobile bleue et orange, berline sportive, pièces et services.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07142c"/><stop offset=".55" stop-color="#082c60"/><stop offset="1" stop-color="#020a18"/></linearGradient>
+ <radialGradient id="spot"><stop stop-color="#1879d7" stop-opacity=".75"/><stop offset="1" stop-color="#07152d" stop-opacity="0"/></radialGradient>
+ <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fff18c"/><stop offset=".2" stop-color="#ffbd21"/><stop offset=".58" stop-color="#ff7c0a"/><stop offset="1" stop-color="#b92708"/></linearGradient>
+ <linearGradient id="blue" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#9ff5ff"/><stop offset=".22" stop-color="#18c1ff"/><stop offset=".56" stop-color="#0876e1"/><stop offset="1" stop-color="#071d60"/></linearGradient>
+ <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".35" stop-color="#8ea9c7"/><stop offset=".55" stop-color="#f4fbff"/><stop offset="1" stop-color="#456079"/></linearGradient>
+ <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#51c9ff"/><stop offset=".5" stop-color="#0a2855"/><stop offset="1" stop-color="#020918"/></linearGradient>
+ <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="13" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur in="SourceAlpha" stdDeviation="18" result="b"/><feOffset dy="13"/><feComponentTransfer><feFuncA type="linear" slope=".55"/></feComponentTransfer><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#70bfff" stroke-opacity=".08" stroke-width="1"/></pattern>
+</defs>
+<rect width="2048" height="768" fill="url(#bg)"/><rect width="2048" height="768" fill="url(#grid)"/><ellipse cx="1150" cy="360" rx="1000" ry="520" fill="url(#spot)"/>
+<g opacity=".5" fill="none" stroke-linecap="round"><path d="M0 155H520" stroke="#138eff" stroke-width="5"/><path d="M0 174H360" stroke="#ff8a11" stroke-width="3"/><path d="M0 545H530" stroke="#148cff" stroke-width="4"/><path d="M0 563H420" stroke="#ff9d1b" stroke-width="3"/><path d="M1080 30Q1350 -60 1650 42" stroke="#188fff" stroke-width="3"/><path d="M1200 65Q1520 -10 1880 78" stroke="#ff9d16" stroke-width="3"/></g>
+<g transform="translate(70 72)" filter="url(#shadow)">
+ <path d="M220 55Q520 -38 890 45Q1040 70 1198 42" fill="none" stroke="url(#metal)" stroke-width="14" stroke-linecap="round"/>
+ <path d="M290 36Q570 -88 940 18" fill="none" stroke="url(#gold)" stroke-width="12" stroke-linecap="round" filter="url(#glow)"/>
+ <text x="20" y="220" font-family="Impact,'Arial Narrow',sans-serif" font-size="178" font-weight="900" letter-spacing="-4" fill="url(#gold)" stroke="#190f0b" stroke-width="24" paint-order="stroke">CHANCELLOR</text>
+ <text x="20" y="220" font-family="Impact,'Arial Narrow',sans-serif" font-size="178" font-weight="900" letter-spacing="-4" fill="url(#gold)" stroke="#fff1a0" stroke-width="3" paint-order="stroke">CHANCELLOR</text>
+ <text x="20" y="378" font-family="Impact,'Arial Narrow',sans-serif" font-size="166" font-weight="900" letter-spacing="-1" fill="url(#blue)" stroke="#031329" stroke-width="24" paint-order="stroke">AUTOMOBILE</text>
+ <text x="20" y="378" font-family="Impact,'Arial Narrow',sans-serif" font-size="166" font-weight="900" letter-spacing="-1" fill="url(#blue)" stroke="#d6f7ff" stroke-width="3" paint-order="stroke">AUTOMOBILE</text>
+ <rect x="5" y="405" width="1170" height="84" rx="40" fill="url(#gold)" stroke="#fff2af" stroke-width="5"/>
+ <path d="M38 447H120M1050 447H1135" stroke="#241a0d" stroke-width="10" stroke-linecap="round"/>
+ <text x="580" y="464" text-anchor="middle" font-family="Arial,sans-serif" font-size="48" font-style="italic" font-weight="900" fill="#101b2a">AUTOMOBILE  •  PIÈCES AUTO</text>
+</g>
+<g transform="translate(1250 180)" filter="url(#shadow)">
+ <ellipse cx="390" cy="435" rx="405" ry="32" fill="#000" opacity=".65"/>
+ <path d="M30 292L74 220Q94 185 140 170L312 104Q355 88 403 88H570Q624 88 667 121L756 203L850 234Q890 247 901 284L912 339L879 374H42Z" fill="url(#blue)" stroke="#b0edff" stroke-width="7"/>
+ <path d="M206 164L330 111Q364 99 404 99H563Q614 101 650 132L711 201H166Z" fill="url(#glass)" stroke="#bdefff" stroke-width="5"/>
+ <path d="M438 103V201M565 105Q625 130 671 201" stroke="#63caff" stroke-width="4" opacity=".8"/>
+ <path d="M78 276L178 258L250 268L219 287H67Z" fill="#eafaff" filter="url(#glow)"/>
+ <path d="M743 250L864 282L881 303L758 289Z" fill="#fff1c7" filter="url(#glow)"/>
+ <path d="M37 342H901" stroke="#ffae25" stroke-width="9"/>
+ <path d="M50 376H884" stroke="#eaf8ff" stroke-width="5" opacity=".7"/>
+ <g fill="#050b15" stroke="url(#metal)" stroke-width="11"><circle cx="237" cy="369" r="69"/><circle cx="733" cy="369" r="69"/></g>
+ <g fill="#102e50" stroke="#7ccfff" stroke-width="5"><circle cx="237" cy="369" r="43"/><circle cx="733" cy="369" r="43"/></g>
+ <g fill="none" stroke="#d8efff" stroke-width="7"><path d="M237 330V408M198 369H276M210 342L264 396M264 342L210 396"/><path d="M733 330V408M694 369H772M706 342L760 396M760 342L706 396"/></g>
+</g>
+<g transform="translate(100 640)" font-family="Arial,sans-serif" fill="#eaf4ff">
+ <g><circle cx="48" cy="0" r="28" fill="#092d5c" stroke="#3fb7ff" stroke-width="3"/><path d="M27 6L34 -10H62L70 6M33 6H65M37 6V13M60 6V13" fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round"/><text x="88" y="7" font-size="25" font-weight="700">VENTE AUTO</text></g>
+ <path d="M325 -30V30" stroke="#ff9417" stroke-width="4"/>
+ <g transform="translate(370)"><circle r="28" fill="#092d5c" stroke="#3fb7ff" stroke-width="3"/><path d="M-16 -8L0 -20L16 -8L16 10L0 20L-16 10Z" fill="none" stroke="#fff" stroke-width="4"/><text x="48" y="7" font-size="25" font-weight="700">PIÈCES DÉTACHÉES</text></g>
+ <path d="M750 -30V30" stroke="#ff9417" stroke-width="4"/>
+ <g transform="translate(790)"><circle r="28" fill="#092d5c" stroke="#3fb7ff" stroke-width="3"/><path d="M-15 -13L14 15M14 -13L-15 15" stroke="#fff" stroke-width="7" stroke-linecap="round"/><text x="48" y="7" font-size="25" font-weight="700">ENTRETIEN & RÉPARATION</text></g>
+</g>
+<g transform="translate(1430 34)"><text x="0" y="0" font-family="cursive" font-size="54" font-style="italic" fill="#fff">Roulez en toute confiance !</text><path d="M0 28Q190 60 420 18" fill="none" stroke="#ff9916" stroke-width="8" stroke-linecap="round"/></g>
+<path d="M0 746Q560 716 1080 746T2048 725" fill="none" stroke="#ff8e0a" stroke-width="8" filter="url(#glow)"/>
+</svg>

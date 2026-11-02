@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260" role="img" aria-labelledby="t d">
+<title id="t">Chancellor Automobile</title><desc id="d">Logo Chancellor Automobile, automobile et pièces auto, qualité performance service.</desc>
+<defs><linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffe37b"/><stop offset=".45" stop-color="#ff9b12"/><stop offset="1" stop-color="#bc2b05"/></linearGradient><linearGradient id="blue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9eeaff"/><stop offset=".5" stop-color="#1596ee"/><stop offset="1" stop-color="#06326c"/></linearGradient></defs>
+<rect width="1000" height="260" rx="24" fill="#07152d"/>
+<rect x="13" y="13" width="974" height="234" rx="18" fill="none" stroke="#315b82" stroke-width="2"/>
+<path d="M53 174A81 81 0 1 1 162 61" fill="none" stroke="url(#gold)" stroke-width="18" stroke-linecap="round"/>
+<path d="M75 190L116 81L158 190M91 151H140" fill="none" stroke="url(#blue)" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="207" y="133" font-family="Impact,'Arial Narrow',sans-serif" font-size="88" font-weight="900" letter-spacing="2" fill="url(#gold)">CHANCELLOR</text>
+<text x="210" y="194" font-family="Impact,'Arial Narrow',sans-serif" font-size="52" font-weight="900" letter-spacing="9" fill="url(#blue)">AUTOMOBILE</text>
+<path d="M209 213H930" stroke="#ff9d1c" stroke-width="5" stroke-linecap="round"/>
+<text x="930" y="239" text-anchor="end" font-family="Arial,sans-serif" font-size="17" font-weight="700" letter-spacing="4" fill="#d4e7f9">AUTOMOBILE • PIÈCES AUTO</text>
+</svg>

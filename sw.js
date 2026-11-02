@@ -1,4 +1,4 @@
-const CACHE_NAME = 'chancellor-auto-v4';
+const CACHE_NAME = 'chancellor-auto-v5';
 const CORE_ASSETS = [
   './',
   './index.html',
@@ -10,8 +10,12 @@ const CORE_ASSETS = [
   './assets/favicon.svg',
   './assets/favicon-192.png',
   './assets/favicon-512.png',
-  './assets/banner.avif',
-  './assets/logo.avif'
+  './assets/chancellor-banner.png',
+  './assets/chancellor-logo-original.png',
+  './assets/chancellor-banner.svg',
+  './assets/vehicle-hero.svg',
+  './assets/parts-hero.svg',
+  './assets/chancellor-logo.svg'
 ];
 
 self.addEventListener('install', event => {
@@ -26,7 +30,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys => Promise.all(
-      keys.filter(key => key.startsWith('chancellor-') && key !== CACHE_NAME)
+      keys.filter(key => key.startsWith('chancellor-auto-') && key !== CACHE_NAME)
         .map(key => caches.delete(key))
     )).then(() => self.clients.claim())
   );

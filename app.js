@@ -279,3 +279,22 @@ initInstallPrompt();
 initVehiclePage();
 initPartsPage();
 initPWA();
+
+ // Reveal effects are progressive: content remains visible if the observer is unavailable.
+function initRevealEffects() {
+  const targets = $$('.choice-card, .values-grid > div, .vehicle-type, .part-category, .request-step, .request-card, .compatibility-card');
+  if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, {threshold:0.12, rootMargin:'0px 0px -35px 0px'});
+  targets.forEach((item,index) => {
+    item.classList.add('reveal');
+    item.style.transitionDelay = (Math.min(index % 5, 4) * 55) + 'ms';
+    observer.observe(item);
+  });
+}
+initRevealEffects();

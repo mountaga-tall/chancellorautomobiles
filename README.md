@@ -8,7 +8,7 @@ Site vitrine et catalogue de demandes pour la vente de véhicules et les pièces
 - `vehicules.html` : vente automobile, catégories de véhicules, sélection marque/modèle/année et formulaire de recherche.
 - `pieces.html` : catalogue de familles de pièces, moteur de recherche, outil de compatibilité véhicule et formulaire de demande.
 - `styles.css` et `app.js` : ressources communes responsive et interactions.
-- `manifest.webmanifest`, `sw.js` et `assets/favicon-192.png` / `assets/favicon-512.png` : PWA installable et cache hors connexion.
+- `manifest.webmanifest`, `sw.js` et `assets/favicon-192.png` / `assets/favicon-512.png` : PWA installable et cache hors connexion et illustrations vectorielles haute définition.
 
 ## Fonctionnalités
 
@@ -17,6 +17,8 @@ Site vitrine et catalogue de demandes pour la vente de véhicules et les pièces
 - Sélecteurs de compatibilité synchronisés sur la page pièces.
 - Recherche instantanée par catégorie de pièces.
 - Service worker avec cache versionné et suppression des anciennes versions.
+- Illustrations SVG vectorielles nettes à toutes les résolutions et sources PNG originales haute définition conservées.
+- Animations d'apparition progressives et effets de profondeur, désactivés pour les préférences de mouvement réduit.
 - Mise en page adaptée aux mobiles, tablettes et ordinateurs.
 
 ## Paramétrage commercial
