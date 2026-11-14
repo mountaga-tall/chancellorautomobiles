@@ -1,25 +1,5 @@
 'use strict';
-const DEMO_VEHICLES={
-"Citadine":[
-{brand:"Toyota",model:"Yaris",year:"2021",km:"38 000 km",fuel:"Essence",gear:"Automatique",price:6900000,description:"Versatile city car, practical in town and comfortable for everyday trips."},
-{brand:"Hyundai",model:"i10",year:"2022",km:"29 000 km",fuel:"Essence",gear:"Manuelle",price:5800000,description:"Compact dimensions, easy driving and a cabin designed for urban mobility."},
-{brand:"Kia",model:"Picanto",year:"2021",km:"32 000 km",fuel:"Essence",gear:"Manuelle",price:5500000,description:"Agile small city car, designed for easy parking and daily journeys."}],
-"Berline":[
-{brand:"Toyota",model:"Corolla",year:"2020",km:"54 000 km",fuel:"Essence",gear:"Automatique",price:9800000,description:"Versatile sedan offering comfort, efficiency and space for regular journeys."},
-{brand:"Peugeot",model:"508",year:"2019",km:"61 000 km",fuel:"Diesel",gear:"Automatique",price:11200000,description:"Elegant styling, refined presentation and enjoyable road manners."},
-{brand:"Hyundai",model:"Elantra",year:"2021",km:"43 000 km",fuel:"Essence",gear:"Automatique",price:8900000,description:"Modern sedan with a good balance of comfort, space and equipment."}],
-"SUV / Crossover":[
-{brand:"Hyundai",model:"Tucson",year:"2021",km:"48 000 km",fuel:"Diesel",gear:"Automatique",price:14500000,description:"Distinctive family SUV with a raised driving position."},
-{brand:"Toyota",model:"RAV4",year:"2020",km:"57 000 km",fuel:"Essence",gear:"Automatique",price:16900000,description:"Versatile SUV with generous space and a design suited to long journeys."},
-{brand:"Kia",model:"Sportage",year:"2022",km:"35 000 km",fuel:"Essence",gear:"Automatique",price:15800000,description:"Modern family crossover with a welcoming, flexible cabin."}],
-"4×4 / Tout-terrain":[
-{brand:"Toyota",model:"Land Cruiser Prado",year:"2018",km:"82 000 km",fuel:"Diesel",gear:"Automatique",price:28500000,description:"Robust 4×4 designed to combine on-road comfort and off-road capability."},
-{brand:"Mitsubishi",model:"Pajero Sport",year:"2020",km:"66 000 km",fuel:"Diesel",gear:"Automatique",price:22600000,description:"Versatile off-roader suited to family travel and varied road conditions."},
-{brand:"Nissan",model:"Patrol",year:"2017",km:"94 000 km",fuel:"Essence",gear:"Automatique",price:31900000,description:"Large, imposing 4×4 prioritising space, power and comfort."}],
-"Utilitaire":[
-{brand:"Toyota",model:"Hilux",year:"2021",km:"46 000 km",fuel:"Diesel",gear:"Manuelle",price:17900000,description:"Versatile pickup designed for professional activities and demanding use."},
-{brand:"Renault",model:"Trafic",year:"2020",km:"68 000 km",fuel:"Diesel",gear:"Manuelle",price:13200000,description:"Practical van with load space suited to professional needs."},
-{brand:"Peugeot",model:"Partner",year:"2022",km:"31 000 km",fuel:"Diesel",gear:"Manuelle",price:10900000,description:"Compact commercial vehicle, easy to handle in town and practical for deliveries."}]};
+const VEHICLE_STOCK = {"SUV / Crossover":[{"brand":"HYUNDAI","model":"TUCSON","year":"2020","mileage":"37 761 km","fuel":"Essence 2.0","transmission":"Boîte automatique","descriptionFr":"SUV essence 2.0 L avec caméra 360°, aides au stationnement et sièges électriques.","descriptionEn":"2.0 L petrol SUV with 360° camera, parking sensors and power seats.","priceXof":6700000,"priceUsd":11260,"featuresFr":["Démarrage Start","Jantes alu","Caméra 360°","Parking sensor","Sièges électriques"],"featuresEn":["Push-button start","Alloy wheels","360° camera","Parking sensors","Power seats"],"photos":["assets/tucson 2020/whatsapp image 2026-11-10 at 23.48.12.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.34.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.35 (1).webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.35.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.36.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.37 (1).webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.37.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.38.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.39 (1).webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.39.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.40 (1).webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.40.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.41.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.42 (1).webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.42.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.43.webp","assets/tucson 2020/whatsapp image 2026-11-10 at 23.50.44.webp"]},{"brand":"HYUNDAI","model":"TUCSON","year":"2025","mileage":"0 km","fuel":"Essence 2.5","transmission":"Boîte automatique","descriptionFr":"Tucson 2025 avec toit panoramique, sièges chauffants et volant chauffant.","descriptionEn":"2025 Tucson with panoramic roof, heated seats and heated steering wheel.","priceXof":13000000,"priceUsd":21850,"featuresFr":["Démarrage Start","Jantes alu","Caméra 360°","Parking sensor","Sièges électriques","Sièges chauffants","Volant chauffant","Direction assistée","Toit panoramique"],"featuresEn":["Push-button start","Alloy wheels","360° camera","Parking sensors","Power seats","Heated seats","Heated steering wheel","Power steering","Panoramic roof"],"photos":["assets/tucson2025/whatsapp image 2026-11-10 at 23.59.16.webp","assets/tucson2025/whatsapp image 2026-11-10 at 23.59.17.webp","assets/tucson2025/whatsapp image 2026-11-10 at 23.59.18 (1).webp","assets/tucson2025/whatsapp image 2026-11-10 at 23.59.18.webp","assets/tucson2025/whatsapp image 2026-11-10 at 23.59.19.webp","assets/tucson2025/whatsapp image 2026-11-10 at 23.59.20 (1).webp","assets/tucson2025/whatsapp image 2026-11-10 at 23.59.20.webp","assets/tucson2025/whatsapp image 2026-11-10 at 23.59.21.webp"]}],"4×4 / Tout-terrain":[{"brand":"MERCEDES-BENZ","model":"G 63 AMG","year":"2020","mileage":"48 000 km","fuel":"Essence V8","transmission":"Boîte automatique","descriptionFr":"G 63 AMG V8 avec carrosserie noire et intérieur noir. Prix communiqué sur demande via WhatsApp.","descriptionEn":"G 63 AMG V8 with black exterior and black interior. Price available on request via WhatsApp.","priceXof":null,"priceUsd":null,"featuresFr":["Démarrage Start","Jantes alu","Caméra 360°","Parking sensor","Sièges électriques","Sièges chauffants","Volant chauffant","Direction assistée","Toit ouvrant","Carrosserie noire","Intérieur noir"],"featuresEn":["Push-button start","Alloy wheels","360° camera","Parking sensors","Power seats","Heated seats","Heated steering wheel","Power steering","Sunroof","Black exterior","Black interior"],"photos":["assets/g63 amg/whatsapp image 2026-11-11 at 00.05.13.webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.14.webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.15 (1).webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.15.webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.16.webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.17 (1).webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.17.webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.18 (1).webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.18.webp","assets/g63 amg/whatsapp image 2026-11-11 at 00.05.19.webp"]}]};
 const DEMO_PARTS={
 "Moteur & filtration":[
 {name:"Filtre à huile",detail:"Engine oil filtration; selection depends on the engine specification.",ref:"DEMO-MOT-01",price:6500},
@@ -80,11 +60,100 @@ function demoCard(type,family,item,index){
  action.addEventListener('click',function(){if(type==='vehicle')window.chooseVehicleDemo(family,index);else window.choosePartDemo(family,index);});
  return card;
 }
-function renderVehicleDemo(family){
- var track=document.getElementById('vehicle-track'),heading=document.getElementById('vehicle-family-title'),items=DEMO_VEHICLES[family];if(!track||!items)return;
- heading.textContent=demoDisplayFamily(family)+' · 3 examples';track.replaceChildren();items.forEach(function(item,index){track.appendChild(demoCard('vehicle',family,item,index));});
- var view=document.getElementById('vehicle-viewport');if(view)view.scrollLeft=0;
+
+function vehicleIsEnglish(){return window.location.pathname.indexOf('/en/')!==-1;}
+function vehicleAsset(path){return (vehicleIsEnglish()?'../':'')+path;}
+function vehicleWhatsApp(item){
+  var english=vehicleIsEnglish();
+  var message=english
+    ? 'Hello Chancellor Automobile, I would like more information about the '+item.brand+' '+item.model+' ('+item.year+'), located in the United Arab Emirates. Please confirm availability and the conditions. '+(item.priceXof?'Please also confirm the price and shipping cost.':'Please send me your price offer via WhatsApp.')
+    : 'Bonjour Chancellor Automobile, je souhaite avoir des informations sur le '+item.brand+' '+item.model+' ('+item.year+'), situé aux Émirats arabes unis. Merci de confirmer la disponibilité et les conditions. '+(item.priceXof?'Merci de confirmer le prix et les frais de transport.':'Merci de me communiquer votre prix via WhatsApp.');
+  window.open('https://wa.me/2250757608293?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
 }
+function createVehicleCard(item){
+  var english=vehicleIsEnglish();
+  var card=document.createElement('article');card.className='catalog-card vehicle-sale-card';
+  var top=demoNode(card,'div','catalog-card-top');
+  demoNode(top,'span','fake-tag',english?'AVAILABLE':'DISPONIBLE');
+  demoNode(top,'span','card-family',item.brand);
+  var gallery=demoNode(card,'div','vehicle-gallery');
+  var main=document.createElement('img');main.className='vehicle-photo-main';main.src=vehicleAsset(item.photos[0]);main.alt=item.brand+' '+item.model+' '+item.year;main.loading='lazy';main.decoding='async';gallery.appendChild(main);
+  var strip=demoNode(gallery,'div','vehicle-photo-strip');
+  item.photos.forEach(function(path,index){
+    var thumb=document.createElement('button');thumb.type='button';thumb.className='vehicle-photo-thumb';thumb.setAttribute('aria-label',(english?'View photo ':'Voir la photo ')+(index+1));thumb.setAttribute('aria-pressed',String(index===0));
+    var image=document.createElement('img');image.src=vehicleAsset(path);image.alt='';image.loading='lazy';image.decoding='async';thumb.appendChild(image);
+    thumb.addEventListener('click',function(){main.src=vehicleAsset(path);main.alt=item.brand+' '+item.model+' '+item.year+' — photo '+(index+1);strip.querySelectorAll('.vehicle-photo-thumb').forEach(function(button){button.setAttribute('aria-pressed','false');});thumb.setAttribute('aria-pressed','true');});
+    strip.appendChild(thumb);
+  });
+  demoNode(card,'div','catalog-card-brand',item.brand+' · '+item.year);
+  demoNode(card,'h3','',item.model);
+  demoNode(card,'p','catalog-card-description',english?item.descriptionEn:item.descriptionFr);
+  var specs=demoNode(card,'div','catalog-specs');
+  [item.mileage,item.fuel,item.transmission,english?'United Arab Emirates':'Émirats arabes unis',english?'Shipping excluded':'Transport non inclus'].forEach(function(value){demoNode(specs,'span','',value);});
+  var features=demoNode(card,'div','catalog-specs vehicle-features');
+  (english?item.featuresEn:item.featuresFr).forEach(function(value){demoNode(features,'span','',value);});
+  var price=demoNode(card,'div','catalog-price-row');var priceText=demoNode(price,'div','');
+  if(item.priceXof){
+    demoNode(priceText,'small','',english?'Indicative price · shipping excluded':'Prix indicatif · hors transport');
+    demoNode(priceText,'strong','',new Intl.NumberFormat('fr-FR').format(item.priceXof)+' XOF');
+    demoNode(priceText,'em','',(english?'Approx. ':'≈ ')+ '(family){
+ var track=document.getElementById('parts-track'),heading=document.getElementById('parts-family-title'),items=DEMO_PARTS[family];if(!track||!items)return;
+ heading.textContent=family+' · 3 exemples';track.replaceChildren();items.forEach(function(item,index){track.appendChild(demoCard('part',family,item,index));});
+ var view=document.getElementById('parts-viewport');if(view)view.scrollLeft=0;
+}
+
+window.chooseVehicleDemo=function(family,index){
+  var item=VEHICLE_STOCK[family]&&VEHICLE_STOCK[family][index];if(item)vehicleWhatsApp(item);
+};
+
+window.choosePartDemo=function(family,index){
+ var item=DEMO_PARTS[family]&&DEMO_PARTS[family][index];if(!item)return;
+ var name=document.getElementById('part-name');if(name)name.value=item.name+' — '+item.ref+' (fictional example)';
+ var details=document.querySelector('#parts-request-form [name="details"]');if(details)details.value='Category: '+family+'. Fictional example: '+item.detail+' Fictional price: '+demoMoney(item.price)+'. Please identify the actual compatible part reference.';
+ document.getElementById('demande-piece')?.scrollIntoView({behavior:'smooth',block:'start'});
+ window.setTimeout(function(){if(name)name.focus({preventScroll:true});},450);
+ var toast=document.getElementById('site-toast');if(toast){toast.textContent='Fictional example added to your enquiry.';toast.classList.add('is-visible');}
+};
+
+window.initDemoVehicleCatalogue=function(){
+  var buttons=Array.from(document.querySelectorAll('.vehicle-type'));
+  if(!buttons.length)return;
+  function activate(family){
+    buttons.forEach(function(button){var active=button.dataset.type===family;button.classList.toggle('is-selected',active);button.setAttribute('aria-pressed',String(active));});
+    renderVehicleDemo(family);
+    var type=document.getElementById('vehicle-type');if(type)type.value=family;
+  }
+  buttons.forEach(function(button){button.addEventListener('click',function(){var family=button.dataset.type;if(VEHICLE_STOCK[family])activate(family);document.getElementById('catalogue-vehicules')?.scrollIntoView({behavior:'smooth',block:'start'});});});
+  var first=buttons.find(function(button){return VEHICLE_STOCK[button.dataset.type];});
+  if(first)activate(first.dataset.type);
+};
+
+window.initDemoPartsCatalogue=function(){
+ var cards=Array.from(document.querySelectorAll('.part-category')),search=document.getElementById('parts-search'),empty=document.getElementById('parts-empty');
+ function activate(family){cards.forEach(function(card){var button=card.querySelector('.part-select'),active=button&&button.dataset.part===family;card.classList.toggle('is-selected',Boolean(active));if(button)button.setAttribute('aria-pressed',String(Boolean(active)));});renderPartDemo(family);}
+ cards.forEach(function(card){var button=card.querySelector('.part-select');if(button)button.addEventListener('click',function(){activate(button.dataset.part);document.getElementById('pieces-demonstration')?.scrollIntoView({behavior:'smooth',block:'start'});});});
+ if(search)search.addEventListener('input',function(){var query=search.value.trim().toLocaleLowerCase('en'),shown=0;cards.forEach(function(card){var match=!query||(card.dataset.search+' '+card.textContent).toLocaleLowerCase('en').includes(query);card.hidden=!match;if(match)shown++;});if(empty)empty.hidden=shown>0;var visible=cards.find(function(card){return !card.hidden;});var button=visible&&visible.querySelector('.part-select');if(button)activate(button.dataset.part);});
+ var first=Object.keys(DEMO_PARTS)[0];if(first)activate(first);
+};
++new Intl.NumberFormat('en-US').format(item.priceUsd)+' USD');
+  }else{
+    demoNode(priceText,'small','',english?'Price':'Prix');
+    demoNode(priceText,'strong','',english?'On request':'Sur demande');
+    demoNode(priceText,'em','',english?'Ask for a quote on WhatsApp':'Demandez le tarif sur WhatsApp');
+  }
+  var action=demoNode(card,'button','catalog-card-action',item.priceXof?(english?'Contact us on WhatsApp':'Contacter sur WhatsApp'):(english?'Request G 63 price on WhatsApp':'Demander le prix du G 63 sur WhatsApp'));
+  action.type='button';demoNode(action,'span','','↗');action.addEventListener('click',function(){vehicleWhatsApp(item);});
+  return card;
+}
+function renderVehicleDemo(family){
+  var track=document.getElementById('vehicle-track'),heading=document.getElementById('vehicle-family-title'),items=VEHICLE_STOCK[family];if(!track||!items)return;
+  var english=vehicleIsEnglish();
+  var label=family==='SUV / Crossover'?'SUV / Crossover':(english?'4×4 / Off-road':'4×4 / Tout-terrain');
+  heading.textContent=label+' · '+items.length+' '+(english?(items.length===1?'vehicle':'vehicles'):(items.length===1?'véhicule':'véhicules'));
+  track.replaceChildren();items.forEach(function(item){track.appendChild(createVehicleCard(item));});
+  var view=document.getElementById('vehicle-viewport');if(view)view.scrollLeft=0;
+}
+
 function renderPartDemo(family){
  var track=document.getElementById('parts-track'),heading=document.getElementById('parts-family-title'),items=DEMO_PARTS[family];if(!track||!items)return;
  heading.textContent=family+' · 3 exemples';track.replaceChildren();items.forEach(function(item,index){track.appendChild(demoCard('part',family,item,index));});
