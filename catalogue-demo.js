@@ -41,151 +41,278 @@ const DEMO_PARTS={
 {name:"Sonde lambda",detail:"Sonde de contrôle des gaz, connectique et longueur à valider.",ref:"DEMO-ECH-01",price:45000},
 {name:"Silencieux arrière",detail:"Silencieux d'échappement, diamètre et version selon motorisation.",ref:"DEMO-ECH-02",price:85000},
 {name:"Catalyseur",detail:"Élément de dépollution, norme et référence constructeur à confirmer.",ref:"DEMO-ECH-03",price:180000}]};
-function demoNode(parent,tag,cls,text){var el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;parent.appendChild(el);return el;}
-function demoMoney(value){return new Intl.NumberFormat('fr-FR').format(value)+' FCFA';}
-function demoCard(type,family,item,index){
- var card=document.createElement('article');card.className='catalog-card';
- var top=demoNode(card,'div','catalog-card-top');demoNode(top,'span','fake-tag','EXEMPLE FICTIF');demoNode(top,'span','card-family',family);
- if(type==='vehicle'){
-  demoNode(card,'div','catalog-card-brand',item.brand+' · '+item.year);demoNode(card,'h3','',item.model);demoNode(card,'p','catalog-card-description',item.description);
-  var specs=demoNode(card,'div','catalog-specs');demoNode(specs,'span','',item.km);demoNode(specs,'span','',item.fuel);demoNode(specs,'span','',item.gear);
- }else{
-  top.lastChild.textContent='REF. '+item.ref;demoNode(card,'div','catalog-card-brand','CHANCELLOR · DÉMONSTRATION');demoNode(card,'h3','',item.name);demoNode(card,'p','catalog-card-description',item.detail);
-  var partSpecs=demoNode(card,'div','catalog-specs');demoNode(partSpecs,'span','','Compatibilité à vérifier');demoNode(partSpecs,'span','','Référence fictive');
- }
- var price=demoNode(card,'div','catalog-price-row');var priceText=demoNode(price,'div','');
- demoNode(priceText,'small','','Prix de démonstration');demoNode(priceText,'strong','',demoMoney(item.price));demoNode(priceText,'em','','Tarif inventé pour la maquette');
- var action=demoNode(card,'button','catalog-card-action',type==='vehicle'?'Demander ce modèle':'Ajouter à ma demande');action.type='button';demoNode(action,'span','','↗');
- action.addEventListener('click',function(){if(type==='vehicle')window.chooseVehicleDemo(family,index);else window.choosePartDemo(family,index);});
- return card;
+
+function demoNode(parent, tag, cls, text) {
+  var element = document.createElement(tag);
+  if (cls) element.className = cls;
+  if (text !== undefined) element.textContent = text;
+  parent.appendChild(element);
+  return element;
 }
 
-function vehicleIsEnglish(){return window.location.pathname.indexOf('/en/')!==-1;}
-function vehicleAsset(path){return (vehicleIsEnglish()?'../':'')+path;}
-function vehicleWhatsApp(item){
-  var english=vehicleIsEnglish();
-  var message=english
-    ? 'Hello Chancellor Automobile, I would like more information about the '+item.brand+' '+item.model+' ('+item.year+'), located in the United Arab Emirates. Please confirm availability and the conditions. '+(item.priceXof?'Please also confirm the price and shipping cost.':'Please send me your price offer via WhatsApp.')
-    : 'Bonjour Chancellor Automobile, je souhaite avoir des informations sur le '+item.brand+' '+item.model+' ('+item.year+'), situé aux Émirats arabes unis. Merci de confirmer la disponibilité et les conditions. '+(item.priceXof?'Merci de confirmer le prix et les frais de transport.':'Merci de me communiquer votre prix via WhatsApp.');
-  window.open('https://wa.me/2250757608293?text='+encodeURIComponent(message),'_blank','noopener,noreferrer');
+function demoMoney(value) {
+  return new Intl.NumberFormat('fr-FR').format(value) + ' FCFA';
 }
-function createVehicleCard(item){
-  var english=vehicleIsEnglish();
-  var card=document.createElement('article');card.className='catalog-card vehicle-sale-card';
-  var top=demoNode(card,'div','catalog-card-top');
-  demoNode(top,'span','fake-tag',english?'AVAILABLE':'DISPONIBLE');
-  demoNode(top,'span','card-family',item.brand);
-  var gallery=demoNode(card,'div','vehicle-gallery');
-  var main=document.createElement('img');main.className='vehicle-photo-main';main.src=vehicleAsset(item.photos[0]);main.alt=item.brand+' '+item.model+' '+item.year;main.loading='lazy';main.decoding='async';gallery.appendChild(main);
-  var strip=demoNode(gallery,'div','vehicle-photo-strip');
-  item.photos.forEach(function(path,index){
-    var thumb=document.createElement('button');thumb.type='button';thumb.className='vehicle-photo-thumb';thumb.setAttribute('aria-label',(english?'View photo ':'Voir la photo ')+(index+1));thumb.setAttribute('aria-pressed',String(index===0));
-    var image=document.createElement('img');image.src=vehicleAsset(path);image.alt='';image.loading='lazy';image.decoding='async';thumb.appendChild(image);
-    thumb.addEventListener('click',function(){main.src=vehicleAsset(path);main.alt=item.brand+' '+item.model+' '+item.year+' — photo '+(index+1);strip.querySelectorAll('.vehicle-photo-thumb').forEach(function(button){button.setAttribute('aria-pressed','false');});thumb.setAttribute('aria-pressed','true');});
+
+function vehicleIsEnglish() {
+  return window.location.pathname.indexOf('/en/') !== -1;
+}
+
+function vehicleAsset(path) {
+  return (vehicleIsEnglish() ? '../' : '') + path;
+}
+
+function vehicleWhatsApp(item) {
+  var english = vehicleIsEnglish();
+  var message = english
+    ? 'Hello Chancellor Automobile, I am interested in the ' + item.brand + ' ' + item.model + ' (' + item.year + '), located in the United Arab Emirates. Please confirm availability, your best price and shipping conditions.'
+    : 'Bonjour Chancellor Automobile, je suis intéressé(e) par le/la ' + item.brand + ' ' + item.model + ' (' + item.year + '), situé(e) aux Émirats arabes unis. Merci de confirmer la disponibilité, votre meilleur prix et les conditions de transport.';
+  window.open('https://wa.me/2250757608293?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
+}
+
+function createVehicleCard(item) {
+  var english = vehicleIsEnglish();
+  var card = document.createElement('article');
+  card.className = 'catalog-card vehicle-sale-card';
+
+  var top = demoNode(card, 'div', 'catalog-card-top');
+  demoNode(top, 'span', 'fake-tag', english ? 'AVAILABLE' : 'DISPONIBLE');
+  demoNode(top, 'span', 'card-family', item.brand);
+
+  var gallery = demoNode(card, 'div', 'vehicle-gallery');
+  var main = document.createElement('img');
+  main.className = 'vehicle-photo-main';
+  main.src = vehicleAsset(item.photos[0]);
+  main.alt = item.brand + ' ' + item.model + ' ' + item.year;
+  main.loading = 'lazy';
+  main.decoding = 'async';
+  gallery.appendChild(main);
+
+  var strip = demoNode(gallery, 'div', 'vehicle-photo-strip');
+  item.photos.forEach(function(path, index) {
+    var thumb = document.createElement('button');
+    thumb.type = 'button';
+    thumb.className = 'vehicle-photo-thumb';
+    thumb.setAttribute('aria-label', (english ? 'View photo ' : 'Voir la photo ') + (index + 1));
+    thumb.setAttribute('aria-pressed', String(index === 0));
+
+    var image = document.createElement('img');
+    image.src = vehicleAsset(path);
+    image.alt = '';
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    thumb.appendChild(image);
+
+    thumb.addEventListener('click', function() {
+      main.src = vehicleAsset(path);
+      main.alt = item.brand + ' ' + item.model + ' ' + item.year + ' — photo ' + (index + 1);
+      strip.querySelectorAll('.vehicle-photo-thumb').forEach(function(button) {
+        button.setAttribute('aria-pressed', 'false');
+      });
+      thumb.setAttribute('aria-pressed', 'true');
+    });
     strip.appendChild(thumb);
   });
-  demoNode(card,'div','catalog-card-brand',item.brand+' · '+item.year);
-  demoNode(card,'h3','',item.model);
-  demoNode(card,'p','catalog-card-description',english?item.descriptionEn:item.descriptionFr);
-  var specs=demoNode(card,'div','catalog-specs');
-  [item.mileage,item.fuel,item.transmission,english?'United Arab Emirates':'Émirats arabes unis',english?'Shipping excluded':'Transport non inclus'].forEach(function(value){demoNode(specs,'span','',value);});
-  var features=demoNode(card,'div','catalog-specs vehicle-features');
-  (english?item.featuresEn:item.featuresFr).forEach(function(value){demoNode(features,'span','',value);});
-  var price=demoNode(card,'div','catalog-price-row');var priceText=demoNode(price,'div','');
-  if(item.priceXof){
-    demoNode(priceText,'small','',english?'Indicative price · shipping excluded':'Prix indicatif · hors transport');
-    demoNode(priceText,'strong','',new Intl.NumberFormat('fr-FR').format(item.priceXof)+' XOF');
-    demoNode(priceText,'em','',(english?'Approx. ':'≈ ')+ '(family){
- var track=document.getElementById('parts-track'),heading=document.getElementById('parts-family-title'),items=DEMO_PARTS[family];if(!track||!items)return;
- heading.textContent=family+' · 3 exemples';track.replaceChildren();items.forEach(function(item,index){track.appendChild(demoCard('part',family,item,index));});
- var view=document.getElementById('parts-viewport');if(view)view.scrollLeft=0;
-}
 
-window.chooseVehicleDemo=function(family,index){
-  var item=VEHICLE_STOCK[family]&&VEHICLE_STOCK[family][index];if(item)vehicleWhatsApp(item);
-};
+  demoNode(card, 'div', 'catalog-card-brand', item.brand + ' · ' + item.year);
+  demoNode(card, 'h3', '', item.model);
+  demoNode(card, 'p', 'catalog-card-description', english ? item.descriptionEn : item.descriptionFr);
 
-window.choosePartDemo=function(family,index){
- var item=DEMO_PARTS[family]&&DEMO_PARTS[family][index];if(!item)return;
- var name=document.getElementById('part-name');if(name)name.value=item.name+' — '+item.ref+' (exemple fictif)';
- var details=document.querySelector('#parts-request-form [name="details"]');if(details)details.value='Catégorie : '+family+'. Exemple fictif : '+item.detail+' Tarif fictif : '+demoMoney(item.price)+'. Merci d’identifier la référence réelle compatible.';
- document.getElementById('demande-piece')?.scrollIntoView({behavior:'smooth',block:'start'});
- window.setTimeout(function(){if(name)name.focus({preventScroll:true});},450);
- var toast=document.getElementById('site-toast');if(toast){toast.textContent='Exemple fictif ajouté à votre demande.';toast.classList.add('is-visible');}
-};
+  var specs = demoNode(card, 'div', 'catalog-specs');
+  [
+    item.mileage,
+    item.fuel,
+    item.transmission,
+    english ? 'United Arab Emirates' : 'Émirats arabes unis',
+    english ? 'Shipping excluded' : 'Transport non inclus'
+  ].forEach(function(value) {
+    demoNode(specs, 'span', '', value);
+  });
 
-window.initDemoVehicleCatalogue=function(){
-  var buttons=Array.from(document.querySelectorAll('.vehicle-type'));
-  if(!buttons.length)return;
-  function activate(family){
-    buttons.forEach(function(button){var active=button.dataset.type===family;button.classList.toggle('is-selected',active);button.setAttribute('aria-pressed',String(active));});
-    renderVehicleDemo(family);
-    var type=document.getElementById('vehicle-type');if(type)type.value=family;
+  var features = demoNode(card, 'div', 'catalog-specs vehicle-features');
+  (english ? item.featuresEn : item.featuresFr).forEach(function(value) {
+    demoNode(features, 'span', '', value);
+  });
+
+  var price = demoNode(card, 'div', 'catalog-price-row');
+  var priceText = demoNode(price, 'div', '');
+  if (item.priceXof) {
+    demoNode(priceText, 'small', '', english ? 'Indicative price · shipping excluded' : 'Prix indicatif · hors transport');
+    demoNode(priceText, 'strong', '', new Intl.NumberFormat('fr-FR').format(item.priceXof) + ' XOF');
+    demoNode(priceText, 'em', '', (english ? 'Approx. ' : '≈ ') + new Intl.NumberFormat('en-US').format(item.priceUsd) + ' USD');
+  } else {
+    demoNode(priceText, 'small', '', english ? 'Price' : 'Prix');
+    demoNode(priceText, 'strong', '', english ? 'On request' : 'Sur demande');
+    demoNode(priceText, 'em', '', english ? 'Ask for a quote on WhatsApp' : 'Demandez le tarif sur WhatsApp');
   }
-  buttons.forEach(function(button){button.addEventListener('click',function(){var family=button.dataset.type;if(VEHICLE_STOCK[family])activate(family);document.getElementById('catalogue-vehicules')?.scrollIntoView({behavior:'smooth',block:'start'});});});
-  var first=buttons.find(function(button){return VEHICLE_STOCK[button.dataset.type];});
-  if(first)activate(first.dataset.type);
-};
 
-window.initDemoPartsCatalogue=function(){
- var cards=Array.from(document.querySelectorAll('.part-category')),search=document.getElementById('parts-search'),empty=document.getElementById('parts-empty');
- function activate(family){cards.forEach(function(card){var button=card.querySelector('.part-select'),active=button&&button.dataset.part===family;card.classList.toggle('is-selected',Boolean(active));if(button)button.setAttribute('aria-pressed',String(Boolean(active)));});renderPartDemo(family);}
- cards.forEach(function(card){var button=card.querySelector('.part-select');if(button)button.addEventListener('click',function(){activate(button.dataset.part);document.getElementById('pieces-demonstration')?.scrollIntoView({behavior:'smooth',block:'start'});});});
- if(search)search.addEventListener('input',function(){var query=search.value.trim().toLocaleLowerCase('fr'),shown=0;cards.forEach(function(card){var match=!query||(card.dataset.search+' '+card.textContent).toLocaleLowerCase('fr').includes(query);card.hidden=!match;if(match)shown++;});if(empty)empty.hidden=shown>0;var visible=cards.find(function(card){return !card.hidden;});var button=visible&&visible.querySelector('.part-select');if(button)activate(button.dataset.part);});
- var first=Object.keys(DEMO_PARTS)[0];if(first)activate(first);
-};
-+new Intl.NumberFormat('en-US').format(item.priceUsd)+' USD');
-  }else{
-    demoNode(priceText,'small','',english?'Price':'Prix');
-    demoNode(priceText,'strong','',english?'On request':'Sur demande');
-    demoNode(priceText,'em','',english?'Ask for a quote on WhatsApp':'Demandez le tarif sur WhatsApp');
-  }
-  var action=demoNode(card,'button','catalog-card-action',item.priceXof?(english?'Contact us on WhatsApp':'Contacter sur WhatsApp'):(english?'Request G 63 price on WhatsApp':'Demander le prix du G 63 sur WhatsApp'));
-  action.type='button';demoNode(action,'span','','↗');action.addEventListener('click',function(){vehicleWhatsApp(item);});
+  var actionLabel = item.priceXof
+    ? (english ? 'Contact us on WhatsApp' : 'Contacter sur WhatsApp')
+    : (english ? 'Request G 63 price on WhatsApp' : 'Demander le prix du G 63 sur WhatsApp');
+  var action = demoNode(card, 'button', 'catalog-card-action', actionLabel);
+  action.type = 'button';
+  demoNode(action, 'span', '', '↗');
+  action.addEventListener('click', function() { vehicleWhatsApp(item); });
+
   return card;
 }
-function renderVehicleDemo(family){
-  var track=document.getElementById('vehicle-track'),heading=document.getElementById('vehicle-family-title'),items=VEHICLE_STOCK[family];if(!track||!items)return;
-  var english=vehicleIsEnglish();
-  var label=family==='SUV / Crossover'?'SUV / Crossover':(english?'4×4 / Off-road':'4×4 / Tout-terrain');
-  heading.textContent=label+' · '+items.length+' '+(english?(items.length===1?'vehicle':'vehicles'):(items.length===1?'véhicule':'véhicules'));
-  track.replaceChildren();items.forEach(function(item){track.appendChild(createVehicleCard(item));});
-  var view=document.getElementById('vehicle-viewport');if(view)view.scrollLeft=0;
+
+function renderVehicleDemo(family) {
+  var track = document.getElementById('vehicle-track');
+  var heading = document.getElementById('vehicle-family-title');
+  var items = VEHICLE_STOCK[family];
+  if (!track || !heading || !items) return;
+
+  var english = vehicleIsEnglish();
+  var label = family === 'SUV / Crossover'
+    ? 'SUV / Crossover'
+    : (english ? '4×4 / Off-road' : '4×4 / Tout-terrain');
+  heading.textContent = label + ' · ' + items.length + ' ' +
+    (english ? (items.length === 1 ? 'vehicle' : 'vehicles') : (items.length === 1 ? 'véhicule' : 'véhicules'));
+
+  track.replaceChildren();
+  items.forEach(function(item) {
+    track.appendChild(createVehicleCard(item));
+  });
+  var viewport = document.getElementById('vehicle-viewport');
+  if (viewport) viewport.scrollLeft = 0;
 }
 
-function renderPartDemo(family){
- var track=document.getElementById('parts-track'),heading=document.getElementById('parts-family-title'),items=DEMO_PARTS[family];if(!track||!items)return;
- heading.textContent=family+' · 3 exemples';track.replaceChildren();items.forEach(function(item,index){track.appendChild(demoCard('part',family,item,index));});
- var view=document.getElementById('parts-viewport');if(view)view.scrollLeft=0;
+function demoCard(type, family, item, index) {
+  var card = document.createElement('article');
+  card.className = 'catalog-card';
+  var top = demoNode(card, 'div', 'catalog-card-top');
+  demoNode(top, 'span', 'fake-tag', 'EXEMPLE FICTIF');
+  demoNode(top, 'span', 'card-family', family);
+  demoNode(card, 'div', 'catalog-card-brand', 'CHANCELLOR · DÉMONSTRATION');
+  demoNode(card, 'h3', '', item.name);
+  demoNode(card, 'p', 'catalog-card-description', item.detail);
+
+  var specs = demoNode(card, 'div', 'catalog-specs');
+  demoNode(specs, 'span', '', 'Compatibilité à vérifier');
+  demoNode(specs, 'span', '', 'Référence fictive');
+
+  var price = demoNode(card, 'div', 'catalog-price-row');
+  var priceText = demoNode(price, 'div', '');
+  demoNode(priceText, 'small', '', 'Prix de démonstration');
+  demoNode(priceText, 'strong', '', demoMoney(item.price));
+  demoNode(priceText, 'em', '', 'Tarif inventé pour la maquette');
+
+  var action = demoNode(card, 'button', 'catalog-card-action', 'Ajouter à ma demande');
+  action.type = 'button';
+  demoNode(action, 'span', '', '↗');
+  action.addEventListener('click', function() { window.choosePartDemo(family, index); });
+  return card;
 }
-window.chooseVehicleDemo=function(family,index){
- var item=DEMO_VEHICLES[family]&&DEMO_VEHICLES[family][index];if(!item)return;
- var type=document.getElementById('vehicle-type');if(type)type.value=family;
- var make=document.getElementById('vehicle-make'),model=document.getElementById('vehicle-model'),year=document.getElementById('vehicle-year');
- if(make&&model&&year){make.value=item.brand;make.dispatchEvent(new Event('change',{bubbles:true}));model.value=item.model;model.dispatchEvent(new Event('change',{bubbles:true}));year.value=item.year;}
- var details=document.querySelector('#vehicle-request-form [name="details"]');if(details)details.value='Exemple fictif choisi : '+item.brand+' '+item.model+'. À remplacer par une recherche réelle.';
- var budget=document.querySelector('#vehicle-request-form [name="budget"]');if(budget)budget.value='Budget indicatif à confirmer';
- document.getElementById('demande-vehicule')?.scrollIntoView({behavior:'smooth',block:'start'});
- var toast=document.getElementById('site-toast');if(toast){toast.textContent='Exemple fictif sélectionné. Confirmez les critères avant envoi.';toast.classList.add('is-visible');}
+
+function renderPartDemo(family) {
+  var track = document.getElementById('parts-track');
+  var heading = document.getElementById('parts-family-title');
+  var items = DEMO_PARTS[family];
+  if (!track || !heading || !items) return;
+  heading.textContent = family + ' · 3 exemples';
+  track.replaceChildren();
+  items.forEach(function(item, index) {
+    track.appendChild(demoCard('part', family, item, index));
+  });
+  var viewport = document.getElementById('parts-viewport');
+  if (viewport) viewport.scrollLeft = 0;
+}
+
+window.chooseVehicleDemo = function(family, index) {
+  var item = VEHICLE_STOCK[family] && VEHICLE_STOCK[family][index];
+  if (item) vehicleWhatsApp(item);
 };
-window.choosePartDemo=function(family,index){
- var item=DEMO_PARTS[family]&&DEMO_PARTS[family][index];if(!item)return;
- var name=document.getElementById('part-name');if(name)name.value=item.name+' — '+item.ref+' (exemple fictif)';
- var details=document.querySelector('#parts-request-form [name="details"]');if(details)details.value='Catégorie : '+family+'. Exemple fictif : '+item.detail+' Tarif fictif : '+demoMoney(item.price)+'. Merci d’identifier la référence réelle compatible.';
- document.getElementById('demande-piece')?.scrollIntoView({behavior:'smooth',block:'start'});
- window.setTimeout(function(){if(name)name.focus({preventScroll:true});},450);
- var toast=document.getElementById('site-toast');if(toast){toast.textContent='Exemple fictif ajouté à votre demande.';toast.classList.add('is-visible');}
+
+window.choosePartDemo = function(family, index) {
+  var item = DEMO_PARTS[family] && DEMO_PARTS[family][index];
+  if (!item) return;
+  var name = document.getElementById('part-name');
+  if (name) name.value = item.name + ' — ' + item.ref + ' (exemple fictif)';
+  var details = document.querySelector('#parts-request-form [name="details"]');
+  if (details) {
+    details.value = 'Catégorie : ' + family + '. Exemple fictif : ' + item.detail +
+      ' Tarif fictif : ' + demoMoney(item.price) + '. Merci d’identifier la référence réelle compatible.';
+  }
+  document.getElementById('demande-piece')?.scrollIntoView({behavior:'smooth', block:'start'});
+  window.setTimeout(function() {
+    if (name) name.focus({preventScroll:true});
+  }, 450);
+  var toast = document.getElementById('site-toast');
+  if (toast) {
+    toast.textContent = 'Exemple fictif ajouté à votre demande.';
+    toast.classList.add('is-visible');
+  }
 };
-window.initDemoVehicleCatalogue=function(){
- var buttons=Array.from(document.querySelectorAll('.vehicle-type'));
- function activate(family){buttons.forEach(function(button){var active=button.dataset.type===family;button.classList.toggle('is-selected',active);button.setAttribute('aria-pressed',String(active));});renderVehicleDemo(family);}
- buttons.forEach(function(button){button.addEventListener('click',function(){var family=button.dataset.type;var type=document.getElementById('vehicle-type');if(type)type.value=family;activate(family);document.getElementById('catalogue-vehicules')?.scrollIntoView({behavior:'smooth',block:'start'});});});
- var first=Object.keys(DEMO_VEHICLES)[0];if(first)activate(first);
+
+window.initDemoVehicleCatalogue = function() {
+  var buttons = Array.from(document.querySelectorAll('.vehicle-type'));
+  if (!buttons.length) return;
+
+  function activate(family) {
+    buttons.forEach(function(button) {
+      var active = button.dataset.type === family;
+      button.classList.toggle('is-selected', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    renderVehicleDemo(family);
+    var type = document.getElementById('vehicle-type');
+    if (type) type.value = family;
+  }
+
+  buttons.forEach(function(button) {
+    button.addEventListener('click', function() {
+      var family = button.dataset.type;
+      if (VEHICLE_STOCK[family]) activate(family);
+      document.getElementById('catalogue-vehicules')?.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  var first = buttons.find(function(button) { return VEHICLE_STOCK[button.dataset.type]; });
+  if (first) activate(first.dataset.type);
 };
-window.initDemoPartsCatalogue=function(){
- var cards=Array.from(document.querySelectorAll('.part-category')),search=document.getElementById('parts-search'),empty=document.getElementById('parts-empty');
- function activate(family){cards.forEach(function(card){var button=card.querySelector('.part-select'),active=button&&button.dataset.part===family;card.classList.toggle('is-selected',Boolean(active));if(button)button.setAttribute('aria-pressed',String(Boolean(active)));});renderPartDemo(family);}
- cards.forEach(function(card){var button=card.querySelector('.part-select');if(button)button.addEventListener('click',function(){activate(button.dataset.part);document.getElementById('pieces-demonstration')?.scrollIntoView({behavior:'smooth',block:'start'});});});
- if(search)search.addEventListener('input',function(){var query=search.value.trim().toLocaleLowerCase('fr'),shown=0;cards.forEach(function(card){var match=!query||(card.dataset.search+' '+card.textContent).toLocaleLowerCase('fr').includes(query);card.hidden=!match;if(match)shown++;});if(empty)empty.hidden=shown>0;var visible=cards.find(function(card){return !card.hidden;});var button=visible&&visible.querySelector('.part-select');if(button)activate(button.dataset.part);});
- var first=Object.keys(DEMO_PARTS)[0];if(first)activate(first);
+
+window.initDemoPartsCatalogue = function() {
+  var cards = Array.from(document.querySelectorAll('.part-category'));
+  var search = document.getElementById('parts-search');
+  var empty = document.getElementById('parts-empty');
+
+  function activate(family) {
+    cards.forEach(function(card) {
+      var button = card.querySelector('.part-select');
+      var active = button && button.dataset.part === family;
+      card.classList.toggle('is-selected', Boolean(active));
+      if (button) button.setAttribute('aria-pressed', String(Boolean(active)));
+    });
+    renderPartDemo(family);
+  }
+
+  cards.forEach(function(card) {
+    var button = card.querySelector('.part-select');
+    if (button) {
+      button.addEventListener('click', function() {
+        activate(button.dataset.part);
+        document.getElementById('pieces-demonstration')?.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    }
+  });
+
+  if (search) {
+    search.addEventListener('input', function() {
+      var query = search.value.trim().toLocaleLowerCase('fr');
+      var shown = 0;
+      cards.forEach(function(card) {
+        var match = !query || (card.dataset.search + ' ' + card.textContent).toLocaleLowerCase('fr').includes(query);
+        card.hidden = !match;
+        if (match) shown++;
+      });
+      if (empty) empty.hidden = shown > 0;
+      var visible = cards.find(function(card) { return !card.hidden; });
+      var button = visible && visible.querySelector('.part-select');
+      if (button) activate(button.dataset.part);
+    });
+  }
+
+  var first = Object.keys(DEMO_PARTS)[0];
+  if (first) activate(first);
 };
