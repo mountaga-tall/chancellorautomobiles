@@ -42,6 +42,15 @@ const DEMO_PARTS={
 {name:"Silencieux arrière",detail:"Silencieux d'échappement, diamètre et version selon motorisation.",ref:"DEMO-ECH-02",price:85000},
 {name:"Catalyseur",detail:"Élément de dépollution, norme et référence constructeur à confirmer.",ref:"DEMO-ECH-03",price:180000}]};
 
+const DEMO_PARTS_EN = {"DEMO-MOT-01":["Oil filter","Filters the engine oil circuit; choose the correct specification for the engine."],"DEMO-MOT-02":["Engine air filter","Air intake filter element; exact fitment must be checked for the vehicle."],"DEMO-MOT-03":["Timing belt kit","Belt and pulley kit; the exact reference depends on the engine code."],"DEMO-FRE-01":["Front brake pads","Front axle brake pad set; shape and dimensions must be checked."],"DEMO-FRE-02":["Front brake discs","Pair of ventilated discs; confirm the diameter before ordering."],"DEMO-FRE-03":["Rear brake kit","Indicative rear braking kit; configuration depends on the vehicle."],"DEMO-SUS-01":["Front shock absorber","Single shock absorber; version and mounting must be confirmed by vehicle."],"DEMO-SUS-02":["Steering ball joint","Steering joint; side and thread must be checked."],"DEMO-SUS-03":["Suspension control arm","Control arm; geometry and side must be confirmed."],"DEMO-ELE-01":["12 V · 65 Ah battery","Starter battery; dimensions, polarity and capacity must be verified."],"DEMO-ELE-02":["Alternator","Charging alternator; output rating and connector depend on the vehicle."],"DEMO-ELE-03":["Starter motor","Starter motor; power rating and mounting must be confirmed."],"DEMO-TRA-01":["Clutch kit","Clutch cover, friction disc and release bearing; fitment depends on gearbox and engine."],"DEMO-TRA-02":["Drive shaft","Complete drive shaft; side and length must be identified."],"DEMO-TRA-03":["Gearbox mount","Anti-vibration mount; shape and position must be checked."],"DEMO-CAR-01":["Headlamp","Headlamp assembly; side, trim and lighting technology must be confirmed."],"DEMO-CAR-02":["Exterior mirror","Complete wing mirror; side and electrical options must be specified."],"DEMO-CAR-03":["Front bumper","Body panel; version and mounting points must be checked."],"DEMO-ACC-01":["Bluetooth car stereo","Multimedia head unit; size and wiring harness must be confirmed for the dashboard."],"DEMO-ACC-02":["Reversing camera","Parking camera; viewing angle and display depend on the installation."],"DEMO-ACC-03":["Dash camera","Driving recorder; power supply and storage requirements must be specified."],"DEMO-ROU-01":["205/55 R16 tyre","Illustrative tyre size; load and speed ratings must be verified."],"DEMO-ROU-02":["16-inch alloy wheel","Wheel fitment; bolt pattern, offset and centre bore must be checked."],"DEMO-ROU-03":["TPMS pressure sensor","Tyre pressure sensor; frequency and protocol depend on the vehicle."],"DEMO-HAB-01":["Floor mat set","Cabin floor mats; shape and fixing points depend on the model."],"DEMO-HAB-02":["Electric window regulator","Window regulator mechanism; door and side must be identified."],"DEMO-HAB-03":["Window switch","Window control switch; button layout and connector must be checked."],"DEMO-ECH-01":["Oxygen sensor","Exhaust gas sensor; connector and cable length must be verified."],"DEMO-ECH-02":["Rear muffler","Rear silencer; diameter and version depend on the engine."],"DEMO-ECH-03":["Catalytic converter","Emissions component; standard and manufacturer reference must be confirmed."]};
+const DEMO_PART_FAMILIES_EN = {"Moteur & filtration":"Engine & filters","Freinage":"Braking","Suspension & direction":"Suspension & steering","Électricité & batterie":"Electrical & battery","Embrayage & transmission":"Clutch & transmission","Carrosserie & éclairage":"Bodywork & lighting","Accessoires & multimédia":"Accessories & multimedia","Pneus & roues":"Tyres & wheels","Habitacle & intérieur":"Cabin & interior","Échappement & capteurs":"Exhaust & sensors"};
+
+function displayPartItem(item) {
+  if (!vehicleIsEnglish()) return item;
+  var translated = DEMO_PARTS_EN[item.ref];
+  return translated ? Object.assign({}, item, {name: translated[0], detail: translated[1]}) : item;
+}
+
 function demoNode(parent, tag, cls, text) {
   var element = document.createElement(tag);
   if (cls) element.className = cls;
@@ -51,7 +60,8 @@ function demoNode(parent, tag, cls, text) {
 }
 
 function demoMoney(value) {
-  return new Intl.NumberFormat('fr-FR').format(value) + ' FCFA';
+  var english = vehicleIsEnglish();
+  return new Intl.NumberFormat(english ? 'en-US' : 'fr-FR').format(value) + (english ? ' XOF' : ' FCFA');
 }
 
 function vehicleIsEnglish() {
@@ -138,7 +148,7 @@ function createVehicleCard(item, compact) {
   var priceText = demoNode(price, 'div', '');
   if (item.priceXof) {
     demoNode(priceText, 'small', '', english ? 'Indicative price · shipping excluded' : 'Prix indicatif · hors transport');
-    demoNode(priceText, 'strong', '', new Intl.NumberFormat('fr-FR').format(item.priceXof) + ' XOF');
+    demoNode(priceText, 'strong', '', new Intl.NumberFormat(english ? 'en-US' : 'fr-FR').format(item.priceXof) + ' XOF');
     demoNode(priceText, 'em', '', (english ? 'Approx. ' : '≈ ') + new Intl.NumberFormat('en-US').format(item.priceUsd) + ' USD');
   } else {
     demoNode(priceText, 'small', '', english ? 'Price' : 'Prix');
@@ -193,26 +203,28 @@ function renderHomeFeaturedVehicles() {
 }
 
 function demoCard(type, family, item, index) {
+  var english = vehicleIsEnglish();
+  var displayItem = displayPartItem(item);
   var card = document.createElement('article');
   card.className = 'catalog-card';
   var top = demoNode(card, 'div', 'catalog-card-top');
-  demoNode(top, 'span', 'fake-tag', 'EXEMPLE FICTIF');
-  demoNode(top, 'span', 'card-family', family);
-  demoNode(card, 'div', 'catalog-card-brand', 'CHANCELLOR · DÉMONSTRATION');
-  demoNode(card, 'h3', '', item.name);
-  demoNode(card, 'p', 'catalog-card-description', item.detail);
+  demoNode(top, 'span', 'fake-tag', english ? 'FICTIONAL DEMO' : 'EXEMPLE FICTIF');
+  demoNode(top, 'span', 'card-family', english ? (DEMO_PART_FAMILIES_EN[family] || family) : family);
+  demoNode(card, 'div', 'catalog-card-brand', english ? 'CHANCELLOR · DEMO' : 'CHANCELLOR · DÉMONSTRATION');
+  demoNode(card, 'h3', '', displayItem.name);
+  demoNode(card, 'p', 'catalog-card-description', displayItem.detail);
 
   var specs = demoNode(card, 'div', 'catalog-specs');
-  demoNode(specs, 'span', '', 'Compatibilité à vérifier');
-  demoNode(specs, 'span', '', 'Référence fictive');
+  demoNode(specs, 'span', '', english ? 'Fitment to be confirmed' : 'Compatibilité à vérifier');
+  demoNode(specs, 'span', '', english ? 'Illustrative reference' : 'Référence fictive');
 
   var price = demoNode(card, 'div', 'catalog-price-row');
   var priceText = demoNode(price, 'div', '');
-  demoNode(priceText, 'small', '', 'Prix de démonstration');
+  demoNode(priceText, 'small', '', english ? 'Demonstration price' : 'Prix de démonstration');
   demoNode(priceText, 'strong', '', demoMoney(item.price));
-  demoNode(priceText, 'em', '', 'Tarif inventé pour la maquette');
+  demoNode(priceText, 'em', '', english ? 'Fictional reference price' : 'Tarif inventé pour la maquette');
 
-  var action = demoNode(card, 'button', 'catalog-card-action', 'Ajouter à ma demande');
+  var action = demoNode(card, 'button', 'catalog-card-action', english ? 'Add to my enquiry' : 'Ajouter à ma demande');
   action.type = 'button';
   demoNode(action, 'span', '', '↗');
   action.addEventListener('click', function() { window.choosePartDemo(family, index); });
@@ -224,7 +236,9 @@ function renderPartDemo(family) {
   var heading = document.getElementById('parts-family-title');
   var items = DEMO_PARTS[family];
   if (!track || !heading || !items) return;
-  heading.textContent = family + ' · 3 exemples';
+  var english = vehicleIsEnglish();
+  var familyLabel = english ? (DEMO_PART_FAMILIES_EN[family] || family) : family;
+  heading.textContent = familyLabel + (english ? ' · 3 examples' : ' · 3 exemples');
   track.replaceChildren();
   items.forEach(function(item, index) {
     track.appendChild(demoCard('part', family, item, index));
@@ -241,12 +255,17 @@ window.chooseVehicleDemo = function(family, index) {
 window.choosePartDemo = function(family, index) {
   var item = DEMO_PARTS[family] && DEMO_PARTS[family][index];
   if (!item) return;
+  var english = vehicleIsEnglish();
+  var displayItem = displayPartItem(item);
+  var familyLabel = english ? (DEMO_PART_FAMILIES_EN[family] || family) : family;
   var name = document.getElementById('part-name');
-  if (name) name.value = item.name + ' — ' + item.ref + ' (exemple fictif)';
+  if (name) name.value = displayItem.name + ' — ' + item.ref + (english ? ' (fictional example)' : ' (exemple fictif)');
   var details = document.querySelector('#parts-request-form [name="details"]');
   if (details) {
-    details.value = 'Catégorie : ' + family + '. Exemple fictif : ' + item.detail +
-      ' Tarif fictif : ' + demoMoney(item.price) + '. Merci d’identifier la référence réelle compatible.';
+    details.value = (english ? 'Category: ' : 'Catégorie : ') + familyLabel + '. ' +
+      (english ? 'Illustrative example: ' : 'Exemple fictif : ') + displayItem.detail +
+      (english ? ' Fictional price: ' : ' Tarif fictif : ') + demoMoney(item.price) +
+      (english ? '. Please confirm the correct compatible reference.' : '. Merci d’identifier la référence réelle compatible.');
   }
   document.getElementById('demande-piece')?.scrollIntoView({behavior:'smooth', block:'start'});
   window.setTimeout(function() {
@@ -254,8 +273,9 @@ window.choosePartDemo = function(family, index) {
   }, 450);
   var toast = document.getElementById('site-toast');
   if (toast) {
-    toast.textContent = 'Exemple fictif ajouté à votre demande.';
+    toast.textContent = english ? 'Fictional example added to your enquiry.' : 'Exemple fictif ajouté à votre demande.';
     toast.classList.add('is-visible');
+    window.setTimeout(function(){ toast.classList.remove('is-visible'); },4500);
   }
 };
 
@@ -313,10 +333,11 @@ window.initDemoPartsCatalogue = function() {
 
   if (search) {
     search.addEventListener('input', function() {
-      var query = search.value.trim().toLocaleLowerCase('fr');
+      var locale = vehicleIsEnglish() ? 'en' : 'fr';
+      var query = search.value.trim().toLocaleLowerCase(locale);
       var shown = 0;
       cards.forEach(function(card) {
-        var match = !query || (card.dataset.search + ' ' + card.textContent).toLocaleLowerCase('fr').includes(query);
+        var match = !query || (card.dataset.search + ' ' + card.textContent).toLocaleLowerCase(locale).includes(query);
         card.hidden = !match;
         if (match) shown++;
       });
