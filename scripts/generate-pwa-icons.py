@@ -3,7 +3,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
-SOURCE = ASSETS / "chancellor-logo-3d.png"
+SOURCE = ASSETS / "Logo automobile Chancellor mat premium.png"
 TRANSPARENT = ASSETS / "chancellor-logo-3d-transparent.png"
 
 if not SOURCE.exists():
