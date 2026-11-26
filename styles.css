@@ -435,3 +435,8 @@ html[data-theme="light"] .home-featured-vehicles .showcase-heading p,html[data-t
 html[data-theme="light"] .home-featured-footer{border-top-color:rgba(37,91,139,.14)}
 @media(max-width:900px){.home-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.home-featured-vehicles{padding:55px 0 58px}.home-featured-grid{grid-template-columns:minmax(0,1fr);gap:14px}.home-featured-grid .catalog-card{max-width:520px;width:100%;margin:0 auto}.home-featured-footer{align-items:stretch;flex-direction:column;gap:13px}.home-featured-footer .action-button{width:100%;justify-content:center}.home-featured-grid .catalog-card h3{font-size:28px}}
+
+/* Progressive scroll reveals: content stays visible when JavaScript or observers are unavailable. */
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .42s ease,transform .42s ease}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
