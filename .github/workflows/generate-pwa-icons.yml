@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'assets/chancellor-logo-3d.png'
+      - 'assets/Logo automobile Chancellor mat premium.png'
       - 'scripts/generate-pwa-icons.py'
       - '.github/workflows/generate-pwa-icons.yml'
 permissions:
