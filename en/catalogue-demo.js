@@ -128,11 +128,17 @@ function createVehicleCard(item, compact) {
   demoNode(card, 'h3', '', item.model);
   demoNode(card, 'p', 'catalog-card-description', english ? item.descriptionEn : item.descriptionFr);
 
+  var fuel = item.fuel;
+  var transmission = item.transmission;
+  if (english) {
+    fuel = fuel.replace(/^Essence/, 'Petrol');
+    transmission = transmission.replace(/^Boîte automatique$/, 'Automatic transmission');
+  }
   var specs = demoNode(card, 'div', 'catalog-specs');
   [
     item.mileage,
-    item.fuel,
-    item.transmission,
+    fuel,
+    transmission,
     english ? 'United Arab Emirates' : 'Émirats arabes unis',
     english ? 'Shipping excluded' : 'Transport non inclus'
   ].forEach(function(value) {
