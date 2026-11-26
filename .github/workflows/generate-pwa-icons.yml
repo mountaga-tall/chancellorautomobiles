@@ -6,6 +6,10 @@ on:
       - 'assets/Logo automobile Chancellor mat premium.png'
       - 'scripts/generate-pwa-icons.py'
       - '.github/workflows/generate-pwa-icons.yml'
+  workflow_dispatch:
+concurrency:
+  group: chancellor-pwa-icons-${{ github.ref }}
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
@@ -31,5 +35,7 @@ jobs:
             echo "PWA icons are already up to date."
           else
             git commit -m "Generate PWA icons from Chancellor sparkling logo"
-            git push
+            git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main
           fi
