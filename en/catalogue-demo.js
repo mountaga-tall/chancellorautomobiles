@@ -70,7 +70,7 @@ function vehicleWhatsApp(item) {
   window.open('https://wa.me/2250757608293?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
 }
 
-function createVehicleCard(item) {
+function createVehicleCard(item, compact) {
   var english = vehicleIsEnglish();
   var card = document.createElement('article');
   card.className = 'catalog-card vehicle-sale-card';
@@ -89,7 +89,7 @@ function createVehicleCard(item) {
   gallery.appendChild(main);
 
   var strip = demoNode(gallery, 'div', 'vehicle-photo-strip');
-  item.photos.forEach(function(path, index) {
+  (compact ? item.photos.slice(0, 4) : item.photos).forEach(function(path, index) {
     var thumb = document.createElement('button');
     thumb.type = 'button';
     thumb.className = 'vehicle-photo-thumb';
@@ -176,6 +176,20 @@ function renderVehicleDemo(family) {
   });
   var viewport = document.getElementById('vehicle-viewport');
   if (viewport) viewport.scrollLeft = 0;
+}
+
+function renderHomeFeaturedVehicles() {
+  var grid = document.getElementById('home-featured-vehicle-grid');
+  if (!grid) return;
+  var items = Object.keys(VEHICLE_STOCK).reduce(function(all, family) {
+    return all.concat(VEHICLE_STOCK[family]);
+  }, []);
+  grid.replaceChildren();
+  items.forEach(function(item) {
+    grid.appendChild(createVehicleCard(item, true));
+  });
+  var count = document.getElementById('home-vehicle-count');
+  if (count) count.textContent = items.length + ' ' + (vehicleIsEnglish() ? 'VEHICLES' : 'VÉHICULES');
 }
 
 function demoCard(type, family, item, index) {
@@ -316,3 +330,6 @@ window.initDemoPartsCatalogue = function() {
   var first = Object.keys(DEMO_PARTS)[0];
   if (first) activate(first);
 };
+
+/* Homepage featured inventory */
+if (document.getElementById("home-featured-vehicle-grid")) renderHomeFeaturedVehicles();
