@@ -5,7 +5,7 @@ Site responsive et PWA avec deux espaces commerciaux distincts.
 - `index.html` : accueil avec la bannière officielle Chancellor.
 - `vehicules.html` : recherche et demandes de véhicules. La bannière officielle est utilisée en visuel secondaire.
 - `pieces.html` : catalogue de pièces et compatibilité véhicule. Le logo officiel avec pièces est affiché uniquement sur cette page.
-- `assets/chancellor-logo-3d.png` : fichier original du logo étincelant, conservé intact.
+- `assets/Logo automobile Chancellor mat premium.png` : logo officiel utilisé sur le site et comme source des icônes PWA.
 - `assets/chancellor-logo-3d-transparent.png` : version sans fond blanc utilisée dans l'en-tête et le pied de page.
 - `assets/chancellor-banner.png` : bannière officielle.
 - `assets/chancellor-logo-original.png` : logo automobile avec pièces, réservé à la page pièces.
@@ -23,10 +23,10 @@ Aucun stock, tarif ou véhicule non confirmé n'est publié.
 - Thème sombre / clair mémorisé entre les pages.
 - Polices Barlow Condensed, Manrope et Space Grotesk avec fallback système.
 - Carrousels glassmorphism horizontaux utilisables au toucher.
-- 5 familles de véhicules avec 3 fiches fictives par famille.
+- Les véhicules réellement proposés sont centralisés dans `VEHICLE_STOCK` et affichés sur l’accueil et la page véhicules.
 - 10 catégories de pièces avec 3 fiches fictives par catégorie.
 - Noms, références, caractéristiques et prix fictifs : ils ne constituent ni stock ni offre réelle.
-- Les trois visuels officiels du dépôt restent les seuls médias illustrés utilisés.
+- La bannière, les logos et les photos de véhicules sont servis depuis le dossier `assets/`.
 
 
 ## English website and international services
