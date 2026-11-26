@@ -1,8 +1,8 @@
-const CACHE_NAME = 'chancellor-auto-v18';
+const CACHE_NAME = 'chancellor-auto-v19';
 const CORE_ASSETS = [
   './','./index.html','./vehicules.html','./pieces.html','./styles.css','./app.js','./catalogue-demo.js','./manifest.webmanifest','./en/index.html','./en/vehicles.html','./en/parts.html','./en/app.js','./en/catalogue-demo.js','./en/manifest.webmanifest',
-  './assets/chancellor-banner.png','./assets/chancellor-logo-3d.png','./assets/chancellor-logo-3d-transparent.png','./assets/chancellor-logo-original.png','./assets/chancellor-logo-matte.png','./assets/Logo%20automobile%20Chancellor%20mat%20premium.png',
-  './assets/favicon.ico','./assets/favicon-48.png','./assets/favicon-192.png','./assets/favicon-512.png','./assets/apple-touch-icon.png'
+  './assets/chancellor-banner.png','./assets/chancellor-logo-3d-transparent.png','./assets/chancellor-logo-original.png','./assets/Logo%20automobile%20Chancellor%20mat%20premium.png',
+  './assets/favicon-48.png','./assets/favicon-192.png','./assets/favicon-512.png','./assets/apple-touch-icon.png'
 ];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(CORE_ASSETS)));self.skipWaiting();});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('chancellor-auto-')&&key!==CACHE_NAME).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));});
